@@ -23,6 +23,29 @@ public class MainController {
 	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 	
 	stage.setScene(scene);
-	System.out.print("asd");
+	System.out.println("got to select screen");
+	}
+	
+	
+	
+	public void StartEasySet(ActionEvent event) throws Exception {
+		
+		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+		Scene scene = new Scene(pane, 600, 600);
+		
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
+		stage.setScene(scene);
+		System.out.println("got to easy set");
+	}	
+	
+	
+	public void StartHardSet(ActionEvent event) throws Exception {
+		
+		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+		Scene scene = new Scene(pane, 600, 600);
+		
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
+		stage.setScene(scene);
+		System.out.println("got to hard set");
 	}
 }
