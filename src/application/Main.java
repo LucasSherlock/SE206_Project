@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	public int five = 5;
+	
 	public Parent root;
 	public Stage thestage;
 	
@@ -23,8 +23,6 @@ public class Main extends Application {
 			thestage=primaryStage;
 			root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
 			Scene scene = new Scene(root,600,600);
-			
-			primaryStage.setTitle("Test");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		

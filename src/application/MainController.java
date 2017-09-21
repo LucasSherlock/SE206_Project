@@ -6,16 +6,25 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MainController {
+	
+	
+	
+	
 	
 	//An array of numbers to guess, should be initialised random upon mode selection
 	//currently fixed at 1-10
@@ -33,56 +42,48 @@ public class MainController {
 	
 	stage.setScene(scene);
 	System.out.println("got to select screen");
+	
+	
+	
 	}
+	
+	
 	
 	
 	
 	public void StartEasySet(ActionEvent event) throws Exception {
 		
+		
 		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
 		Scene scene = new Scene(pane, 600, 600);
-		
+		//needs code to generate easy set numbers array
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
 		System.out.println("got to easy set");
+		
+		
+	
 	}	
+	
 	
 	
 	public void StartHardSet(ActionEvent event) throws Exception {
 		
 		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
-		Scene scene = new Scene(pane, 600, 600);
 		
+		Scene scene = new Scene(pane, 600, 600);
+		//needs code to generate hard set numbers array
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
 		System.out.println("got to hard set");
+	
+		
 	}
 	
-	public void TestHtk(ActionEvent event) throws Exception {
-		
-		
-		ProcessBuilder testHtk = new ProcessBuilder("bash","-c","./"+ "GoSpeech");
-		
-		testHtk.directory(new File("MaoriNumbers"));
 	
-		Process process = testHtk.start();
-		
-		process.waitFor();
-		
-		
-		FileReader recout = new FileReader("MaoriNumbers/recout.mlf");
-		BufferedReader stdoutBuffered = new BufferedReader(recout);
-		
-		System.out.println("hi");
-		String line;
-		
-		
-		while((line = stdoutBuffered.readLine()) != null){
-			
-			System.out.println(line);
-			
-			
-		}
-		
-	}
+
+
+
+
+	
 }
