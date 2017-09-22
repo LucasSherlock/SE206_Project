@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.event.*;
@@ -21,69 +22,84 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MainController {
-	
-	
-	
-	
-	
+
+	@FXML
+	public Button Easy;
+	public Button Hard;
+
+
+
 	//An array of numbers to guess, should be initialised random upon mode selection
 	//currently fixed at 1-10
-	private int[] numbersToGuess = {1,2,3,4,5,6,7,8,9,10};
-	
-	//int to store the score
-	private int Score = 0;
-	
+
+
 	public void MakeGuess(ActionEvent event) throws Exception {
-		
-	Parent pane = FXMLLoader.load( getClass().getResource("SelectScreen.fxml"));
-	Scene scene = new Scene( pane, 600, 600 );
-	
-	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-	
-	stage.setScene(scene);
-	System.out.println("got to select screen");
-	
-	
-	
+
+		Parent pane = FXMLLoader.load( getClass().getResource("SelectScreen.fxml"));
+		Scene scene = new Scene( pane, 600, 600 );
+
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+		stage.setScene(scene);
+		System.out.println("got to select screen");
+
+
+
 	}
-	
-	
-	
-	
-	
-	public void StartEasySet(ActionEvent event) throws Exception {
+
+
+
+
+
+	public void StartSet(ActionEvent event) throws Exception {
+
+		if(event.getSource().equals(Easy)) {
+
+			System.out.println("easy");
+			setLevel(1,10);
+
+
+		}else if(event.getSource().equals(Hard)) {
+
+			System.out.println("easy");
+			setLevel(11,99);
+
+		}
 		
-		
+
 		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
 		Scene scene = new Scene(pane, 600, 600);
 		//needs code to generate easy set numbers array
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
 		System.out.println("got to easy set");
-		
-		
-	
-	}	
-	
-	
-	
-	public void StartHardSet(ActionEvent event) throws Exception {
-		
-		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
-		
-		Scene scene = new Scene(pane, 600, 600);
-		//needs code to generate hard set numbers array
-		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
-		stage.setScene(scene);
-		System.out.println("got to hard set");
-	
-		
+
+
+
 	}
-	
-	
 
 
 
 
-	
-}
+
+	private void setLevel(int min, int max) {
+
+
+		for(int x = 0; x < DataFile.gameNumbers.length; x++) {
+
+			DataFile.gameNumbers[x] = new Random().nextInt(max - min) + 1 + min;
+
+
+		}	
+		
+
+	}
+
+
+
+
+
+
+
+
+	}
