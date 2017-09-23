@@ -7,66 +7,73 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-public class GameController implements Initializable{
+public class GameController implements Initializable {
 
 
 	@FXML
 	public Button RecordButton;
 	public Button SkipButton;
 	public Label numberDisplay;
+	public Label SCORE;
+	public Label LEVEL;
+
 
 
 	public void TestHtk(ActionEvent event) throws Exception {
 
-		RecordButton.setDisable(true);
-		ArrayList<String> wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
-		numberDisplay.setText(Integer.toString(DataFile.gameNumbers[DataFile.Level]));
-		System.out.print("Say the Word "+wordToSay);
-		ArrayList<String> RecognisedWords = useHTK();
-		int Correctness = 0;
-
-		for(String word: wordToSay) {
-
-
-			if(RecognisedWords.contains(word)) {
-
-				Correctness++;
-
+		if(event.getSource() == RecordButton) {
+			
+			SkipButton.setDisable(true);
+			RecordButton.setDisable(true);
+			QuestionWorker currentQt = new QuestionWorker();
+			Thread th = new Thread(currentQt);
+			th.start();
+		
+		}else if(event.getSource() == SkipButton) {
+			
+			Parent pane;
+			if(DataFile.Level < 9) {
+			
+				DataFile.trial = 1;
+				DataFile.Level++;
+				pane  = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+			
+			}else {
+				
+				pane  = FXMLLoader.load(getClass().getResource("ScoreScreen.fxml"));
+				
 			}
-
-
-		}
-
-		if(wordToSay.size() == Correctness) {
-
-			System.out.println("CONGRATS YOU GOT IT");
+			
+			Scene scene = new Scene(pane);
+			Main.thestage.setScene(scene);
+			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 
 		}
-
-		for(int gameNumber: DataFile.gameNumbers) {
-
-
-
-		}
-		RecordButton.setDisable(false);
-		System.out.print(DataFile.Level);
-		DataFile.Level++;
-		numberDisplay.setText(Integer.toString(DataFile.gameNumbers[DataFile.Level]));
-
 
 
 	}
 
 
 
-
+	//method to process Htk
 	private ArrayList<String> useHTK() throws Exception{
+
+
 
 		ArrayList<String> RecognisedWords = new ArrayList<String>();
 		ProcessBuilder testHtk = new ProcessBuilder("bash","-c","./"+ "GoSpeech");
@@ -97,7 +104,7 @@ public class GameController implements Initializable{
 
 		}
 		System.out.print("you said:" + RecognisedWords);
-		System.out.println(RecognisedWords.size());
+		
 		return RecognisedWords;
 
 	}
@@ -183,16 +190,82 @@ public class GameController implements Initializable{
 		return A;
 
 	}
+	//code to display Popup
+	public void PopUp() throws Exception{
 
 
+		Stage stage = new Stage();
+		Parent root = FXMLLoader.load(getClass().getResource("PopUp.fxml"));
+		stage.setScene(new Scene(root));
+		stage.setTitle("My modal window");
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(RecordButton.getScene().getWindow());
+		stage.showAndWait();
 
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		String number = Integer.toString(DataFile.gameNumbers[0]);
-		numberDisplay.setText(number);
 
 	}
+
+
+	//Start of scene
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		LEVEL.setText("Level: " + Integer.toString(DataFile.Level + 1));
+		SCORE.setText("Score: " + Integer.toString(DataFile.score));
+		String number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
+		numberDisplay.setText(number);
+		System.out.println(DataFile.gameNumbers);
+		System.out.println(DataFile.gameNumbers[DataFile.Level]);
+		
+	}
+
+
+	//inner class which is used by outer class to run a thread to process reocrd to avoid blocking
+	public class QuestionWorker extends Task<Void>{
+
+		@Override
+		protected Void call() throws Exception {
+
+			ArrayList<String> wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
+
+			System.out.print("Say the Word "+wordToSay);
+
+
+
+			ArrayList<String> RecognisedWords = useHTK();
+			if(wordToSay.equals(RecognisedWords)) {
+				DataFile.CorrentAnswer = true;
+				DataFile.score++;
+				System.out.print("You Did It");
+
+			}else {
+				DataFile.CorrentAnswer = false;
+
+			}
+
+
+
+
+			Platform.runLater(new Runnable() {
+				@Override public void run() {
+
+					try {
+						PopUp();
+					} catch (Exception e) {
+
+						e.printStackTrace();
+					}
+				}
+			});
+
+
+			return null;
+		}
+
+
+
+
+	}
+
+
 
 }

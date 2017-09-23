@@ -15,14 +15,14 @@ public class Main extends Application {
 	
 	
 	public Parent root;
-	public Stage thestage;
+	public static Stage thestage;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		
 			thestage=primaryStage;
 			root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
-			Scene scene = new Scene(root,600,600);
+			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

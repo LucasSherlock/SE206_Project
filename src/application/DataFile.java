@@ -2,9 +2,10 @@ package application;
 
 public class DataFile {
 
-	public static int[] gameNumbers  = {1,9,2,5,5,6,6,7,8,9,10};
+	public static int[] gameNumbers  = {1,9,2,5,5,6,6,7,8,9};
 	public static int score = 0;
 	public static int Level = 0;
-	
-	
+	public static int trial = 1;
+	public static String difficulty = "easy";
+	public static boolean CorrentAnswer = false;
 }

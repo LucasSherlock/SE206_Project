@@ -14,16 +14,19 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="Test1" layoutX="200.0" layoutY="121.0" mnemonicParsing="false" onAction="#MakeGuess" prefHeight="95.0" prefWidth="200.0" text="Begin" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+      <Button fx:id="Test1" layoutX="200.0" layoutY="98.0" mnemonicParsing="false" onAction="#MakeGuess" prefHeight="95.0" prefWidth="200.0" text="Begin" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TitledPane animated="false" expanded="false" layoutX="200.0" layoutY="216.0" prefWidth="200.0" text="Instructions" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+      <TitledPane animated="false" expanded="false" layoutX="150.0" layoutY="216.0" prefWidth="200.0" text="Instructions" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="150.0" prefWidth="334.0">
                <children>
-                  <Label layoutX="24.0" layoutY="24.0" prefHeight="150.0" prefWidth="298.0" text="In this game you will be asked to record yourself saying a random specified Maori number between 1 and 100. You get two tries to say each number. Each game gives you 10 numbers and you are scored out of 10 at the end." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label layoutX="21.4" layoutY="0.40000000000000036" prefHeight="0.0" prefWidth="277.0" text="In this game you will be asked to record yourself saying a random specified Maori number between 1 and 100. You get two tries to say each number. Each game gives you 10 numbers and you are scored out of 10 at the end." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-10.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
         </content>

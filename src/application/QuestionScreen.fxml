@@ -21,7 +21,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="SkipButton" layoutX="67.0" layoutY="45.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="158.0" text="Skip" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="SkipButton" layoutX="67.0" layoutY="45.0" mnemonicParsing="false" onAction="#TestHtk" prefHeight="95.0" prefWidth="158.0" text="Skip" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
@@ -31,5 +31,7 @@
             <Font size="35.0" />
          </font>
       </Label>
+      <Label fx:id="LEVEL" layoutX="14.0" layoutY="14.0" prefHeight="22.0" prefWidth="114.0" text="LEVEL:" />
+      <Label fx:id="SCORE" layoutX="471.0" layoutY="11.0" prefHeight="22.0" prefWidth="114.0" text="SCORE:" />
    </children>
 </AnchorPane>

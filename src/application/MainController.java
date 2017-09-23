@@ -36,7 +36,7 @@ public class MainController {
 	public void MakeGuess(ActionEvent event) throws Exception {
 
 		Parent pane = FXMLLoader.load( getClass().getResource("SelectScreen.fxml"));
-		Scene scene = new Scene( pane, 600, 600 );
+		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
@@ -57,23 +57,27 @@ public class MainController {
 
 			System.out.println("easy");
 			setLevel(1,10);
-
+			DataFile.difficulty = "easy";
 
 		}else if(event.getSource().equals(Hard)) {
 
 			System.out.println("easy");
 			setLevel(11,99);
-
-		}
+			DataFile.difficulty = "hard";
 		
+		}
+		DataFile.trial = 1;
+		DataFile.CorrentAnswer = false;
+		DataFile.score = 0;
+		DataFile.Level = 0;
 
 		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
-		Scene scene = new Scene(pane, 600, 600);
-		//needs code to generate easy set numbers array
+		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
 		System.out.println("got to easy set");
-
+		
+		
 
 
 	}
