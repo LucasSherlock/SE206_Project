@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class PopUpController implements Initializable {
@@ -19,6 +20,7 @@ public class PopUpController implements Initializable {
 	@FXML
 	public Button Retry;
 	public Button DontRetry;
+	public Label Status;
 	public Label AnswerMessage;
 	
 
@@ -63,15 +65,18 @@ public class PopUpController implements Initializable {
 		if(DataFile.trial == 1) {
 			if(DataFile.CorrentAnswer == true) {
 
-				AnswerMessage.setText("Correct answer, GOOD JOB!");
+				Status.setText("CORRECT");
+				Status.setTextFill(Color.GREEN);
+				AnswerMessage.setText("Press 'Next' to continue");
 				Retry.setText("Next");
 				DontRetry.setText("Next");
 				DataFile.Level++;
 
 			}else {
 
-
-				AnswerMessage.setText("Incorrect, try again or skip");
+				Status.setText("INCORRECT");
+				Status.setTextFill(Color.RED);
+				AnswerMessage.setText("One attempt remaining. Try again or skip this question");
 				Retry.setText("Retry");
 				DontRetry.setText("Skip");
 				DataFile.trial = 2;
@@ -79,15 +84,19 @@ public class PopUpController implements Initializable {
 		}else if(DataFile.trial == 2) {
 			if(DataFile.CorrentAnswer == true) {
 
-				AnswerMessage.setText("Correct answer, GOOD JOB!");
+				Status.setText("CORRECT");
+				Status.setTextFill(Color.GREEN);
+				AnswerMessage.setText("Press 'Next' to continue");
 				Retry.setText("Next");
 				DontRetry.setText("Next");
 				DataFile.Level++;
 
 			}else {
 
+				Status.setText("INCORRECT");
+				Status.setTextFill(Color.RED);
 				Retry.setDisable(true);
-				AnswerMessage.setText("Incorrect, No retries left");
+				AnswerMessage.setText("No attempts left, press 'Next' to continue");
 				Retry.setText("Retry");
 				DontRetry.setText("Next");
 				DataFile.trial = 1;

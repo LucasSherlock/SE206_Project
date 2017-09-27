@@ -57,13 +57,13 @@ public class MainController {
 
 			System.out.println("easy");
 			setLevel(1,10);
-			DataFile.difficulty = "easy";
+			DataFile.difficulty = "EASY";
 
 		}else if(event.getSource().equals(Hard)) {
 
 			System.out.println("easy");
 			setLevel(11,99);
-			DataFile.difficulty = "hard";
+			DataFile.difficulty = "HARD";
 		
 		}
 		DataFile.trial = 1;

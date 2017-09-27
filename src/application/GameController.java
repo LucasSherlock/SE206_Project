@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -28,22 +29,30 @@ public class GameController implements Initializable {
 	@FXML
 	public Button RecordButton;
 	public Button SkipButton;
+	public Label message;
 	public Label numberDisplay;
 	public Label SCORE;
 	public Label LEVEL;
+	public ProgressBar timeRemaining = new ProgressBar(0);
 
 
 
 	public void TestHtk(ActionEvent event) throws Exception {
 
 		if(event.getSource() == RecordButton) {
-			
+			message.setText("Say the Number!");
+			timeRemaining.setVisible(true);
 			SkipButton.setDisable(true);
 			RecordButton.setDisable(true);
 			QuestionWorker currentQt = new QuestionWorker();
 			Thread th = new Thread(currentQt);
+			TimerWorker timer = new TimerWorker();
+			Thread th2 = new Thread(timer);
+			
 			th.start();
-		
+			th2.start();
+			
+			
 		}else if(event.getSource() == SkipButton) {
 			
 			Parent pane;
@@ -103,6 +112,7 @@ public class GameController implements Initializable {
 			}
 
 		}
+		stdoutBuffered.close();
 		System.out.print("you said:" + RecognisedWords);
 		
 		return RecognisedWords;
@@ -213,13 +223,36 @@ public class GameController implements Initializable {
 		SCORE.setText("Score: " + Integer.toString(DataFile.score));
 		String number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
 		numberDisplay.setText(number);
-		System.out.println(DataFile.gameNumbers);
+		timeRemaining.setVisible(false);
 		System.out.println(DataFile.gameNumbers[DataFile.Level]);
+		
+		
+	}
+	
+	
+	//inner class to run a thread to increment the progress bar
+	public class TimerWorker extends Task<Void> {
+
+		@Override
+		protected Void call() throws Exception {
+			int time = 0;
+			while(time < 31) {
+				try{
+					timeRemaining.setProgress(((double)time)/30);
+					Thread.sleep(100);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+				time++;
+			}
+			return null;
+		}
+		
 		
 	}
 
 
-	//inner class which is used by outer class to run a thread to process reocrd to avoid blocking
+	//inner class which is used by outer class to run a thread to process record to avoid blocking
 	public class QuestionWorker extends Task<Void>{
 
 		@Override
@@ -241,7 +274,9 @@ public class GameController implements Initializable {
 				DataFile.CorrentAnswer = false;
 
 			}
-
+			
+			//Sleep for 3s to mimic 3s of recording time
+			Thread.sleep(3000);
 
 
 
@@ -265,6 +300,8 @@ public class GameController implements Initializable {
 
 
 	}
+	
+	
 
 
 

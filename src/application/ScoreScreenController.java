@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ScoreScreenController implements Initializable{
@@ -61,8 +62,18 @@ public class ScoreScreenController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Difficulty.setText("Difficulty: "+ DataFile.difficulty);
-		Score.setText("Score: "+ DataFile.score);
+		if(DataFile.difficulty.equals("HARD")) {
+			Difficulty.setText(DataFile.difficulty + " (11-100)");
+			Difficulty.setTextFill(Color.RED);
+		} else if(DataFile.difficulty.equals("EASY")) {
+			Difficulty.setText(DataFile.difficulty + " (1-10)");
+			Difficulty.setTextFill(Color.GREEN);
+		}
+		
+		Score.setText(DataFile.score+"/10");
+		if(DataFile.score >= 8) {
+			Score.setTextFill(Color.GREEN);
+		}
 		
 		if(DataFile.score <= 8) {
 			
