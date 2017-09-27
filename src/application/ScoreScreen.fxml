@@ -27,7 +27,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="Harder" layoutX="30.0" layoutY="96.0" mnemonicParsing="false" onAction="#postGame" prefHeight="158.0" prefWidth="95.0" text="Try HARD Difficulty (11-99)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Button fx:id="Harder" layoutX="30.0" layoutY="96.0" mnemonicParsing="false" onAction="#postGame" prefHeight="158.0" prefWidth="95.0" text="Try HARD Difficulty (1-99)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -53,7 +53,7 @@
          </padding>
       </Label>
       <Label layoutX="112.0" layoutY="355.0" prefHeight="45.0" prefWidth="400.0" text="***Hard Difficulty Available when score is 8/10 or better***" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-      <Label fx:id="Difficulty" layoutX="283.0" layoutY="60.0" prefHeight="76.0" text="Easy Level 1-10" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="60.0">
+      <Label fx:id="Difficulty" layoutX="283.0" layoutY="60.0" prefHeight="76.0" text="Easy Level 1-9" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font size="24.0" />
          </font>

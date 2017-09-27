@@ -66,11 +66,11 @@ public class ScoreScreenController implements Initializable{
 		
 	
 		if(DataFile.difficulty.equals("HARD")) {
-			Difficulty.setText(DataFile.difficulty + " (11-100)");
+			Difficulty.setText(DataFile.difficulty + " (1-99)");
 			Difficulty.setTextFill(Color.RED);
 			DataFile.hardScores.add(Integer.toString(DataFile.score));
 		} else if(DataFile.difficulty.equals("EASY")) {
-			Difficulty.setText(DataFile.difficulty + " (1-10)");
+			Difficulty.setText(DataFile.difficulty + " (1-9)");
 			Difficulty.setTextFill(Color.GREEN);
 			DataFile.easyScores.add(Integer.toString(DataFile.score));
 		}
