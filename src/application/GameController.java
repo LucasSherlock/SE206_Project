@@ -228,7 +228,7 @@ public class GameController implements Initializable {
 		String number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
 		numberDisplay.setText(number);
 		timeRemaining.setVisible(false);
-		System.out.println(DataFile.gameNumbers[DataFile.Level]);
+		
 		
 		
 	}
@@ -270,7 +270,7 @@ public class GameController implements Initializable {
 			if(wordToSay.equals(RecognisedWords)) {
 				DataFile.CorrentAnswer = true;
 				DataFile.score++;
-				System.out.print("You Did It");
+				
 
 			}else {
 				DataFile.CorrentAnswer = false;
@@ -278,7 +278,7 @@ public class GameController implements Initializable {
 			}
 			
 			//Sleep for 3s to mimic 3s of recording time
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
 
 			Platform.runLater(new Runnable() {
 				@Override public void run() {
@@ -325,7 +325,7 @@ public class GameController implements Initializable {
 				Process playIt = player.start();
 				playIt.waitFor();
 				
-				System.out.println("played recording");
+				
 			}
 			
 			ProcessBuilder deleteWav = new ProcessBuilder("bash","-c","rm foo.wav");
@@ -333,7 +333,7 @@ public class GameController implements Initializable {
 			Process deleteIt = deleteWav.start();
 			deleteIt.waitFor();
 
-			System.out.println("deleted wav");
+			
 
 			return null;
 		}

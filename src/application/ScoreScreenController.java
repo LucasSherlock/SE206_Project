@@ -44,7 +44,7 @@ public class ScoreScreenController implements Initializable{
 			DataFile.difficulty = "hard";
 			for(int x = 0; x < DataFile.gameNumbers.length; x++) {
 
-				DataFile.gameNumbers[x] = new Random().nextInt(99 - 11) + 1 + 11;
+				DataFile.gameNumbers[x] = new Random().nextInt(99 - 1) + 1 + 1;
 
 
 			}	
@@ -62,12 +62,17 @@ public class ScoreScreenController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+	
+		
+	
 		if(DataFile.difficulty.equals("HARD")) {
 			Difficulty.setText(DataFile.difficulty + " (11-100)");
 			Difficulty.setTextFill(Color.RED);
+			DataFile.hardScores.add(Integer.toString(DataFile.score));
 		} else if(DataFile.difficulty.equals("EASY")) {
 			Difficulty.setText(DataFile.difficulty + " (1-10)");
 			Difficulty.setTextFill(Color.GREEN);
+			DataFile.easyScores.add(Integer.toString(DataFile.score));
 		}
 		
 		Score.setText(DataFile.score+"/10");

@@ -56,13 +56,13 @@ public class MainController {
 		if(event.getSource().equals(Easy)) {
 
 			System.out.println("easy");
-			setLevel(1,10);
+			setLevel(1,9);
 			DataFile.difficulty = "EASY";
 
 		}else if(event.getSource().equals(Hard)) {
 
 			System.out.println("easy");
-			setLevel(11,99);
+			setLevel(1,99);
 			DataFile.difficulty = "HARD";
 		
 		}
@@ -101,7 +101,17 @@ public class MainController {
 
 
 
+	public void viewHighScore(ActionEvent event) throws Exception{
+		
+		Parent pane = FXMLLoader.load( getClass().getResource("HighScores.fxml"));
+		Scene scene = new Scene( pane);
 
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+		stage.setScene(scene);
+		System.out.println("got to select screen");
+		
+	}
 
 
 
