@@ -68,7 +68,8 @@ public class PopUpController implements Initializable {
 				Status.setText("CORRECT");
 				Status.setTextFill(Color.GREEN);
 				AnswerMessage.setText("Press 'Next' to continue");
-				Retry.setText("Next");
+				Retry.setText("Retry");
+				Retry.setDisable(true);
 				DontRetry.setText("Next");
 				DataFile.Level++;
 
@@ -87,7 +88,8 @@ public class PopUpController implements Initializable {
 				Status.setText("CORRECT");
 				Status.setTextFill(Color.GREEN);
 				AnswerMessage.setText("Press 'Next' to continue");
-				Retry.setText("Next");
+				Retry.setText("Retry");
+				Retry.setDisable(true);
 				DontRetry.setText("Next");
 				DataFile.Level++;
 

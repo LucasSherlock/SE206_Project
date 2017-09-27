@@ -6,6 +6,6 @@ public class DataFile {
 	public static int score = 0;
 	public static int Level = 0;
 	public static int trial = 1;
-	public static String difficulty = "easy";
+	public static String difficulty = "EASY";
 	public static boolean CorrentAnswer = false;
 }

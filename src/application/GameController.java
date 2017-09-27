@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
@@ -17,7 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
@@ -113,7 +117,7 @@ public class GameController implements Initializable {
 
 		}
 		stdoutBuffered.close();
-		System.out.print("you said:" + RecognisedWords);
+		System.out.println("you said:" + RecognisedWords);
 		
 		return RecognisedWords;
 
@@ -207,7 +211,7 @@ public class GameController implements Initializable {
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getResource("PopUp.fxml"));
 		stage.setScene(new Scene(root));
-		stage.setTitle("My modal window");
+		stage.setTitle("");
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(RecordButton.getScene().getWindow());
 		stage.showAndWait();
@@ -260,9 +264,7 @@ public class GameController implements Initializable {
 
 			ArrayList<String> wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
 
-			System.out.print("Say the Word "+wordToSay);
-
-
+			System.out.println("Say the Word "+wordToSay);
 
 			ArrayList<String> RecognisedWords = useHTK();
 			if(wordToSay.equals(RecognisedWords)) {
@@ -278,12 +280,27 @@ public class GameController implements Initializable {
 			//Sleep for 3s to mimic 3s of recording time
 			Thread.sleep(3000);
 
-
-
 			Platform.runLater(new Runnable() {
 				@Override public void run() {
 
 					try {
+						
+						Alert play = new Alert(AlertType.CONFIRMATION);
+						play.setTitle("Play?");
+						play.setHeaderText("Would you like to play your recording?");
+						play.setContentText("");
+						ButtonType yesButton = new ButtonType("Yes");
+						ButtonType noButton = new ButtonType("No");
+						play.getButtonTypes().setAll(yesButton, noButton);
+						Optional<ButtonType> result = play.showAndWait();
+						
+						PlayerWorker player = new PlayerWorker();
+						if(result.get() == noButton) {
+							player.dontPlay();
+						}
+						
+						Thread th = new Thread(player);
+						th.start();
 						PopUp();
 					} catch (Exception e) {
 
@@ -292,16 +309,40 @@ public class GameController implements Initializable {
 				}
 			});
 
-
 			return null;
 		}
 
-
-
-
 	}
 	
-	
+	public class PlayerWorker extends Task<Void> {
+		private boolean _playRecording = true;	
+		
+		@Override
+		protected Void call() throws Exception {
+			if(_playRecording){
+				ProcessBuilder player = new ProcessBuilder("bash","-c","aplay foo.wav");
+				player.directory(new File("MaoriNumbers"));
+				Process playIt = player.start();
+				playIt.waitFor();
+				
+				System.out.println("played recording");
+			}
+			
+			ProcessBuilder deleteWav = new ProcessBuilder("bash","-c","rm foo.wav");
+			deleteWav.directory(new File("MaoriNumbers"));
+			Process deleteIt = deleteWav.start();
+			deleteIt.waitFor();
+
+			System.out.println("deleted wav");
+
+			return null;
+		}
+		
+		public void dontPlay() {
+			_playRecording = false;
+		}
+		
+	}
 
 
 
