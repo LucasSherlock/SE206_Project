@@ -92,7 +92,8 @@ public class PopUpController implements Initializable {
 				Retry.setDisable(true);
 				DontRetry.setText("Next");
 				DataFile.Level++;
-
+				DataFile.trial = 1;
+			
 			}else {
 
 				Status.setText("INCORRECT");
