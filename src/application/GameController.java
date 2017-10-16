@@ -225,7 +225,16 @@ public class GameController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		LEVEL.setText("Level: " + Integer.toString(DataFile.Level + 1));
 		SCORE.setText("Score: " + Integer.toString(DataFile.score));
-		String number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
+		String number;
+		
+		if(DataFile.practiceMode) {
+			number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
+		} else {
+			number = DataFile.gameProblems[DataFile.Level];
+		}
+		
+		
+		
 		numberDisplay.setText(number);
 		timeRemaining.setVisible(false);
 		
@@ -261,8 +270,13 @@ public class GameController implements Initializable {
 
 		@Override
 		protected Void call() throws Exception {
-
-			ArrayList<String> wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
+			
+			ArrayList<String> wordToSay;
+			if(DataFile.practiceMode) {
+				wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
+			} else {
+				wordToSay = numbersToMaori(DataFile.gameAnswers[DataFile.Level]);
+			}
 
 			System.out.println("Say the Word "+wordToSay);
 
@@ -277,9 +291,6 @@ public class GameController implements Initializable {
 
 			}
 			
-			//Sleep for 3s to mimic 3s of recording time
-			//Thread.sleep(3000);
-
 			Platform.runLater(new Runnable() {
 				@Override public void run() {
 
@@ -328,7 +339,7 @@ public class GameController implements Initializable {
 				
 			}
 			
-			ProcessBuilder deleteWav = new ProcessBuilder("bash","-c","rm foo.wav");
+			ProcessBuilder deleteWav = new ProcessBuilder("bash"," -c"," rm foo.wav");
 			deleteWav.directory(new File("MaoriNumbers"));
 			Process deleteIt = deleteWav.start();
 			deleteIt.waitFor();

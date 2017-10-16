@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ScoreScreenController implements Initializable{
+public class ScoreScreenController implements Initializable {
 	
 	@FXML
 	public Label Difficulty;
@@ -30,7 +30,7 @@ public class ScoreScreenController implements Initializable{
 			
 			
 			
-			Parent pane = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
@@ -64,16 +64,21 @@ public class ScoreScreenController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
 		
-	
-		if(DataFile.difficulty.equals("HARD")) {
-			Difficulty.setText(DataFile.difficulty + " (1-99)");
-			Difficulty.setTextFill(Color.RED);
-			DataFile.hardScores.add(Integer.toString(DataFile.score));
-		} else if(DataFile.difficulty.equals("EASY")) {
-			Difficulty.setText(DataFile.difficulty + " (1-9)");
-			Difficulty.setTextFill(Color.GREEN);
-			DataFile.easyScores.add(Integer.toString(DataFile.score));
+		if(DataFile.practiceMode) {
+			if(DataFile.difficulty.equals("HARD")) {
+				Difficulty.setText(DataFile.difficulty + " (1-99)");
+				Difficulty.setTextFill(Color.RED);
+				DataFile.hardScores.add(Integer.toString(DataFile.score));
+			} else if(DataFile.difficulty.equals("EASY")) {
+				Difficulty.setText(DataFile.difficulty + " (1-9)");
+				Difficulty.setTextFill(Color.GREEN);
+				DataFile.easyScores.add(Integer.toString(DataFile.score));
+			}
+		} else {
+			Difficulty.setText("RANDOM");
+			Harder.setVisible(false);
 		}
+		
 		
 		Score.setText(DataFile.score+"/10");
 		if(DataFile.score >= 8) {
