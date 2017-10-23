@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 public class DataFile {
 
-	public static int[] gameNumbers  = {1,9,2,5,5,6,6,7,8,9};
-	public static String[] gameProblems = {"1+1", "1+1", "1+1", "1+1", "1+1", "1+1", "1+1", "1+1", "1+1", "1+1"};
-	public static int[] gameAnswers = {2,2,2,2,2,2,2,2,2,2};
+	public static int[] practiceGame  = {1,9,2,5,5,6,6,7,8,9};
+	public static Game game;
 	public static int score = 0;
 	public static int Level = 0;
 	public static int trial = 1;

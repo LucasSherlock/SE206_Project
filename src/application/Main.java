@@ -21,7 +21,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception{
 		
 			thestage=primaryStage;
-			root = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+			root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();

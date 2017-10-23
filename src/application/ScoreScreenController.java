@@ -42,9 +42,9 @@ public class ScoreScreenController implements Initializable {
 			DataFile.score = 0;
 			DataFile.Level = 0;
 			DataFile.difficulty = "hard";
-			for(int x = 0; x < DataFile.gameNumbers.length; x++) {
+			for(int x = 0; x < DataFile.practiceGame.length; x++) {
 
-				DataFile.gameNumbers[x] = new Random().nextInt(99 - 1) + 1 + 1;
+				DataFile.practiceGame[x] = new Random().nextInt(99 - 1) + 1 + 1;
 
 
 			}	

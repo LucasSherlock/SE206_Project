@@ -228,9 +228,9 @@ public class GameController implements Initializable {
 		String number;
 		
 		if(DataFile.practiceMode) {
-			number = Integer.toString(DataFile.gameNumbers[DataFile.Level]);
+			number = Integer.toString(DataFile.practiceGame[DataFile.Level]);
 		} else {
-			number = DataFile.gameProblems[DataFile.Level];
+			number = DataFile.game.getQuestion(DataFile.Level);
 		}
 		
 		
@@ -273,9 +273,9 @@ public class GameController implements Initializable {
 			
 			ArrayList<String> wordToSay;
 			if(DataFile.practiceMode) {
-				wordToSay = numbersToMaori(DataFile.gameNumbers[DataFile.Level]);
+				wordToSay = numbersToMaori(DataFile.practiceGame[DataFile.Level]);
 			} else {
-				wordToSay = numbersToMaori(DataFile.gameAnswers[DataFile.Level]);
+				wordToSay = numbersToMaori(DataFile.game.getAnswer(DataFile.Level));
 			}
 
 			System.out.println("Say the Word "+wordToSay);

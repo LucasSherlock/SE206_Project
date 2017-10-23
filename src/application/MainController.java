@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 
 public class MainController {
@@ -26,6 +27,13 @@ public class MainController {
 	@FXML
 	public Button Easy;
 	public Button Hard;
+	public Button back;
+	public Button showInstruc;
+	public Label instructions;
+	public Label title;
+	public Label instrucTitle;
+	public SplitPane buttons;
+	
 
 
 
@@ -33,15 +41,14 @@ public class MainController {
 	//currently fixed at 1-10
 
 
-	public void MakeGuess(ActionEvent event) throws Exception {
+	public void start(ActionEvent event) throws Exception {
 
-		Parent pane = FXMLLoader.load( getClass().getResource("SelectScreen.fxml"));
+		Parent pane = FXMLLoader.load( getClass().getResource("InitialScreen.fxml"));
 		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
 		stage.setScene(scene);
-		System.out.println("got to select screen");
 
 
 
@@ -89,9 +96,9 @@ public class MainController {
 	private void setLevel(int min, int max) {
 
 
-		for(int x = 0; x < DataFile.gameNumbers.length; x++) {
+		for(int x = 0; x < DataFile.practiceGame.length; x++) {
 
-			DataFile.gameNumbers[x] = new Random().nextInt(max - min) + 1 + min;
+			DataFile.practiceGame[x] = new Random().nextInt(max - min) + 1 + min;
 
 
 		}	
@@ -114,6 +121,20 @@ public class MainController {
 	}
 
 
-
-
+	public void instructions(ActionEvent ae) {
+		if(ae.getSource() == showInstruc) {
+			title.setVisible(false);
+			buttons.setVisible(false);
+			instrucTitle.setVisible(true);
+			instructions.setVisible(true);
+			back.setVisible(true);
+		} else if(ae.getSource() == back) {
+			title.setVisible(true);
+			buttons.setVisible(true);
+			instrucTitle.setVisible(false);
+			instructions.setVisible(false);
+			back.setVisible(false);
+		}
 	}
+
+}
