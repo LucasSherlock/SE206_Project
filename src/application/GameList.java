@@ -15,7 +15,6 @@ public class GameList {
 	public void remove(Game game) {
 		if(!games.contains(game)) {
 			games.remove(game);
-			//ListController.items.remove(game.getName());
 		}
 	}
 	
@@ -28,4 +27,7 @@ public class GameList {
 		return null;
 	}
 	
+	public void clear() {
+		games.clear();
+	}
 }

@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
@@ -38,6 +39,20 @@ public class ListController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		File[] files = new File(Store.directory).listFiles();
+		Store store = null;
+		
+		games.clear();
+		items.clear();
+		
+		for (File file : files) {
+		    if (file.isFile()) {
+		        store = new Store(file);
+		        
+		        games.add(store.loadGame());
+		    }
+		}
+		
 		QuestionList.setItems(items);
 	}
 	
@@ -124,7 +139,12 @@ public class ListController implements Initializable {
 		if(QuestionList.getSelectionModel().isEmpty()) {
 			errorPopup();
 		} else {
-			games.remove(games.findGame(QuestionList.getSelectionModel().getSelectedItem()));
+			Game game = games.findGame(QuestionList.getSelectionModel().getSelectedItem());
+			
+			Store store = new Store(game);
+			store.deleteGame();
+			
+			games.remove(game);
 			items.remove(QuestionList.getSelectionModel().getSelectedIndex());
 		}
 	}

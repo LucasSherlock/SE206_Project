@@ -8,16 +8,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class Serializer {
+public class Store {
 	private String _fileName;
 	private File _file;
+	public static String directory = System.getProperty("user.home") + File.separator + "titai";
 	
-	public Serializer(String name) {
-		String path = System.getProperty("user.home") + File.separator + "titai";
-		
-		new File(path).mkdir();
 	
-		_fileName = path + "/" + name + ".ser";
+	public Store(File file) {
+		_file = file;
+		_fileName = file.toString();
+	}
+	
+	public Store(Game game) {
+		this(game.getName());
+	}
+	
+	public Store(String name) {		
+		new File(directory).mkdir();
+	
+		_fileName = directory + "/" + name + ".ser";
         _file = new File(_fileName);
 	}
 	
@@ -58,5 +67,9 @@ public class Serializer {
 	    }
 		
 		return game;
+	}
+	
+	public void deleteGame() {
+		_file.delete();
 	}
 }
