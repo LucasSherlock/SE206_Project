@@ -14,5 +14,4 @@ public class DataFile {
 	public static boolean CorrectAnswer = false;
 	public static ArrayList<String> hardScores = new ArrayList<String>();
 	public static ArrayList<String> easyScores = new ArrayList<String>();
-	
 }

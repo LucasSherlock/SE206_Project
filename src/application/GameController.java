@@ -27,9 +27,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
 public class GameController implements Initializable {
-
-
 	@FXML
 	public Button RecordButton;
 	public Button SkipButton;
@@ -40,9 +39,7 @@ public class GameController implements Initializable {
 	public ProgressBar timeRemaining = new ProgressBar(0);
 
 
-
 	public void TestHtk(ActionEvent event) throws Exception {
-
 		if(event.getSource() == RecordButton) {
 			message.setText("Say the Number!");
 			timeRemaining.setVisible(true);
