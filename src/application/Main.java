@@ -9,28 +9,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-
-
 public class Main extends Application {
-	
-	
 	public Parent root;
-	public static Stage thestage;
+	public static Stage mainStage;
+	
 	
 	@Override
-	public void start(Stage primaryStage) throws Exception{
-		
-			thestage=primaryStage;
+	public void start(Stage primaryStage) throws Exception {
+			mainStage = primaryStage;
 			root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
-			
-	
 	}
 	
-
 	public static void main(String[] args) {
 		launch(args);
 	}

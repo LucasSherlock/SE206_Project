@@ -20,10 +20,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-public class ListController implements Initializable {
-	
+/*
+ * This class is the controller for the list view.
+ */
+public class ListController implements Initializable {	
 	public static GameList games = new GameList();
 	public static ObservableList<String> items = FXCollections.observableArrayList();
+	
 	@FXML
 	public Button practice;
 	public Button playRandom;
@@ -32,10 +35,12 @@ public class ListController implements Initializable {
 	public Button newList;
 	public ListView<String> QuestionList = new ListView<String>();
 
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		QuestionList.setItems(items);
 	}
+	
 	
 	public void setRandom() {
 		DataFile.practiceMode = false;
@@ -47,8 +52,7 @@ public class ListController implements Initializable {
 			ans = new Random().nextInt(99) + 1;
 			arg1 = new Random().nextInt(ans-1) + 1;
 			arg2 = ans - arg1;
-			DataFile.game.add(arg1, arg2);
-			
+			DataFile.game.add(arg1, arg2);			
 		}
 	}
 	

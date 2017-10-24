@@ -70,7 +70,7 @@ public class GameController implements Initializable {
 			}
 			
 			Scene scene = new Scene(pane);
-			Main.thestage.setScene(scene);
+			Main.mainStage.setScene(scene);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 
 		}
