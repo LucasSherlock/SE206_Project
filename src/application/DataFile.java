@@ -3,7 +3,6 @@ package application;
 import java.util.ArrayList;
 
 public class DataFile {
-
 	public static int[] practiceGame  = {1,9,2,5,5,6,6,7,8,9};
 	public static Game game;
 	public static int score = 0;

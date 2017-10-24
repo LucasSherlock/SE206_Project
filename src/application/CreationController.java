@@ -44,6 +44,7 @@ public class CreationController implements Initializable {
 					warning.setVisible(true);
 					warning.setText("Answer out of range.");
 				} else {
+					warning.setVisible(false);
 					newGame.add(Integer.parseInt(arg1.getText()), Integer.parseInt(arg2.getText()));
 					arg1.clear();
 					arg2.clear();
@@ -76,6 +77,7 @@ public class CreationController implements Initializable {
 				warning.setVisible(true);
 				warning.setText("That name is already in use.");
 			} else {
+				submit1.setDefaultButton(true);  // Button can be activated with enter key
 				newGame.setName(enterName.getText());
 				warning.setVisible(false);
 				enterName.setVisible(false);
@@ -95,6 +97,7 @@ public class CreationController implements Initializable {
 		public void initialize(URL location, ResourceBundle resources) {
 			title.setText("Enter a name for this list:");
 			submit1.setVisible(false);
+			submit2.setDefaultButton(true); // Button can be activated with enter key
 			newGame = new Game();
 		}
 }
