@@ -13,29 +13,29 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="arg1" layoutX="120.0" layoutY="164.0" prefHeight="51.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="200.0">
+      <TextField fx:id="lhsNumber" layoutX="120.0" layoutY="164.0" prefHeight="51.0" prefWidth="150.0" visible="false" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <TextField fx:id="arg2" layoutX="457.0" layoutY="164.0" prefHeight="51.0" prefWidth="150.0" visible="false" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
+      <TextField fx:id="rhsNumber" layoutX="457.0" layoutY="164.0" prefHeight="51.0" prefWidth="150.0" visible="false" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
       <Label fx:id="warning" alignment="CENTER" layoutX="302.0" layoutY="279.0" prefHeight="21.0" prefWidth="96.0" text="ErrorMessage" textFill="#f80303" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Button fx:id="submit1" layoutX="318.0" layoutY="343.0" mnemonicParsing="false" onAction="#addQuestion" text="Submit" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
+      <Button fx:id="submitQuestion" layoutX="318.0" layoutY="343.0" mnemonicParsing="false" onAction="#addQuestion" text="Submit" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
       <Label fx:id="title" alignment="CENTER" layoutX="103.0" layoutY="107.0" text="Enter numbers which add to between 1 and 99" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Label fx:id="qNum" layoutX="52.0" layoutY="42.0" text="Question: */10" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="40.0" />
-      <TextField fx:id="enterName" layoutX="257.0" layoutY="200.0" prefWidth="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+      <TextField fx:id="listName" layoutX="257.0" layoutY="200.0" prefWidth="150.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button fx:id="submit2" layoutX="317.0" layoutY="339.0" mnemonicParsing="false" onAction="#setName" text="Submit" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
+      <Button fx:id="submitListName" layoutX="317.0" layoutY="339.0" mnemonicParsing="false" onAction="#setName" text="Submit" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
    </children>
 </AnchorPane>

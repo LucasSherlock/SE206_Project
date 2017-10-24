@@ -16,88 +16,122 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/*
+ * The controller which is responsible for handling the creation of question lists.
+ */
 public class CreationController implements Initializable {
-
 	public Game newGame;
 	
-	
 	@FXML
-	public Button submit1;
-	public Button submit2;
-	public TextField arg1;
-	public TextField arg2;
-	public TextField enterName;
+	public Button submitQuestion;
+	public Button submitListName;
+	public TextField lhsNumber; // LHS = left hand side
+	public TextField rhsNumber; // RHS = right hand side
+	public TextField listName;
 	public Label warning;
 	public Label qNum;
 	public Label plus;
 	public Label title;
 	
+	private static final int finalListLength = 10;  
 	
+	/*
+	 * This method is triggered when a user submits a question for inclusion into the list.
+	 */
 	public void addQuestion(ActionEvent ae) {
+		// Hides any prior warnings
+		warning.setVisible(false);
 		
-			try {
-				if(arg1.getText().equals("") || arg2.getText().equals("")) {
-					warning.setVisible(true);
-					warning.setText("Please add input.");
-				} else if(Integer.parseInt(arg1.getText())+Integer.parseInt(arg2.getText()) > 99 
-						|| Integer.parseInt(arg1.getText())+Integer.parseInt(arg2.getText()) < 1) {
-					warning.setVisible(true);
-					warning.setText("Answer out of range.");
-				} else {
-					warning.setVisible(false);
-					newGame.add(Integer.parseInt(arg1.getText()), Integer.parseInt(arg2.getText()));
-					arg1.clear();
-					arg2.clear();
-					qNum.setText("Question: "+(newGame.size()+1)+"/10");
-				}
-				
-			} catch(NumberFormatException e) {
+		try {
+			if (lhsNumber.getText().equals("") || rhsNumber.getText().equals("")) {
+				// Input is non-existent
 				warning.setVisible(true);
-				warning.setText("Please enter numbers.");
+				warning.setText("Please add input.");
 			}
+			else if (Integer.parseInt(lhsNumber.getText()) + Integer.parseInt(rhsNumber.getText()) > 99 
+					|| Integer.parseInt(lhsNumber.getText()) + Integer.parseInt(rhsNumber.getText()) < 1) {
+				// Integer is not in range 1-99
+				warning.setVisible(true);
+				warning.setText("Answer out of range.");
+			}
+			else {				
+				// Pushes the question onto the questions list
+				newGame.add(Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
+				
+				// Input validations are successful
+				lhsNumber.clear();
+				rhsNumber.clear();
+				
+				// Increments the counter/10
+				qNum.setText("Question: "+(newGame.size()+1)+"/10");
+			}
+		}
+		catch(NumberFormatException e) {
+			System.out.println(e);
+			// Integer failed to parse
+			warning.setVisible(true);
+			warning.setText("Please enter numbers.");
+		}
 		
-		
-		if(newGame.size() == 10) {
+		// Exits the creation view if the required number of questions have been added
+		if(newGame.size() == finalListLength) {
 			try {
+				// Updates the list view to include the newly created game
 				ListController.games.add(newGame);
-				Parent pane;
-				pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+				
+				// Returns the user back to the list view
+				Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
-			} catch(IOException e) {
+			}
+			catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-		
-		public void setName(ActionEvent ae) {
-			
-			if(ListController.items.contains(enterName.getText())) {
-				warning.setVisible(true);
-				warning.setText("That name is already in use.");
-			} else {
-				submit1.setDefaultButton(true);  // Button can be activated with enter key
-				newGame.setName(enterName.getText());
-				warning.setVisible(false);
-				enterName.setVisible(false);
-				submit1.setVisible(true);
-				submit2.setVisible(false);
-				arg1.setVisible(true);
-				arg2.setVisible(true);
-				plus.setVisible(true);
-				qNum.setVisible(true);
-				title.setText("Enter numbers which add to between 1 and 99:");
-				qNum.setText("Question: "+(newGame.size()+1)+"/10");
-			}
-			
+	
+	/*
+	 * This method sets the name for a new list. If the name is valid the list creation process is initiated
+	 */
+	public void setName(ActionEvent ae) {	
+		if(ListController.items.contains(listName.getText())) {
+			// List with the given name already exists
+			warning.setVisible(true);
+			warning.setText("That name is already in use.");
 		}
+		else {
+			// List creation process initiates
+			newGame.setName(listName.getText());
+			
+			// Show and hide the relevant elements
+			warning.setVisible(false);
+			listName.setVisible(false);
+			submitQuestion.setVisible(true);
+			submitListName.setVisible(false);
+			lhsNumber.setVisible(true);
+			rhsNumber.setVisible(true);
+			plus.setVisible(true);
+			qNum.setVisible(true);
+			
+			title.setText("Enter numbers which add to between 1 and 99:");
+			qNum.setText("Question: "+(newGame.size()+1)+"/10");
+			
+			// Submit button can be activated with enter key
+			submitQuestion.setDefaultButton(true);
+		}		
+	}
 		
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			title.setText("Enter a name for this list:");
-			submit1.setVisible(false);
-			submit2.setDefaultButton(true); // Button can be activated with enter key
-			newGame = new Game();
-		}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// Instantiate a new game object
+		newGame = new Game();
+		
+		// Show the relevant elements
+		title.setText("Enter a name for this list:");
+		submitQuestion.setVisible(false);
+		
+		// Submit button can be activated with enter key
+		submitListName.setDefaultButton(true);
+	}
 }
