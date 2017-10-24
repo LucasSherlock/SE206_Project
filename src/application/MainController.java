@@ -74,7 +74,7 @@ public class MainController {
 		
 		}
 		DataFile.trial = 1;
-		DataFile.CorrentAnswer = false;
+		DataFile.CorrectAnswer = false;
 		DataFile.score = 0;
 		DataFile.Level = 0;
 

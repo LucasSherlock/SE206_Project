@@ -53,7 +53,7 @@ public class ListController implements Initializable {
 	}
 	
 	public void playGame(ActionEvent ae) {
-		DataFile.CorrentAnswer = false;
+		DataFile.CorrectAnswer = false;
 		DataFile.score = 0;
 		DataFile.Level = 0;
 		DataFile.trial = 1;

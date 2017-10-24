@@ -38,7 +38,7 @@ public class ScoreScreenController implements Initializable {
 		}else if(event.getSource() == Harder){
 			
 			DataFile.trial = 1;
-			DataFile.CorrentAnswer = false;
+			DataFile.CorrectAnswer = false;
 			DataFile.score = 0;
 			DataFile.Level = 0;
 			DataFile.difficulty = "hard";

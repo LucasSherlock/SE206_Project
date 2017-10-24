@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /*
- * The controller which is responsible for handling the creation of question lists.
+ * This controller is responsible for handling the creation of question lists.
  */
 public class CreationController implements Initializable {
 	public Game newGame;

@@ -63,7 +63,7 @@ public class PopUpController implements Initializable {
 		Retry.setDisable(false);
 		
 		if(DataFile.trial == 1) {
-			if(DataFile.CorrentAnswer == true) {
+			if(DataFile.CorrectAnswer == true) {
 
 				Status.setText("CORRECT");
 				Status.setTextFill(Color.GREEN);
@@ -83,7 +83,7 @@ public class PopUpController implements Initializable {
 				DataFile.trial = 2;
 			}
 		}else if(DataFile.trial == 2) {
-			if(DataFile.CorrentAnswer == true) {
+			if(DataFile.CorrectAnswer == true) {
 
 				Status.setText("CORRECT");
 				Status.setTextFill(Color.GREEN);

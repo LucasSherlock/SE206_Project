@@ -282,12 +282,12 @@ public class GameController implements Initializable {
 
 			ArrayList<String> RecognisedWords = useHTK();
 			if(wordToSay.equals(RecognisedWords)) {
-				DataFile.CorrentAnswer = true;
+				DataFile.CorrectAnswer = true;
 				DataFile.score++;
 				
 
 			}else {
-				DataFile.CorrentAnswer = false;
+				DataFile.CorrectAnswer = false;
 
 			}
 			
