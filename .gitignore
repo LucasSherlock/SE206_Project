@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/java,macos,eclipse,windows
 
+# Custom config
+MaoriNumbers/
+
 ### Eclipse ###
 
 .metadata
@@ -132,6 +135,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,macos,eclipse,windows
-
-# Custom
-*.zip
