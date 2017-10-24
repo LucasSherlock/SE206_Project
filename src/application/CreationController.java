@@ -79,6 +79,10 @@ public class CreationController implements Initializable {
 				// Updates the list view to include the newly created game
 				ListController.games.add(newGame);
 				
+				// Stores the game on disk
+				Serializer serializer = new Serializer(newGame.getName());
+				serializer.saveGame(newGame);
+				
 				// Returns the user back to the list view
 				Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
 				Scene scene = new Scene(pane);

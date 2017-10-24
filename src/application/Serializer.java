@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,14 +10,20 @@ import java.io.ObjectOutputStream;
 
 public class Serializer {
 	private String _fileName;
+	private File _file;
 	
 	public Serializer(String name) {
-		_fileName = "/data/" + name + ".ser";
+		String path = System.getProperty("user.home") + File.separator + "titai";
+		
+		new File(path).mkdir();
+	
+		_fileName = path + "/" + name + ".ser";
+        _file = new File(_fileName);
 	}
 	
 	public void saveGame(Game game) {
-		try {
-			FileOutputStream fileOutput = new FileOutputStream(_fileName);
+		try {			
+			FileOutputStream fileOutput = new FileOutputStream(_file);
 			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 			
 			objectOutput.writeObject(game);
@@ -35,7 +42,7 @@ public class Serializer {
 		Game game = null;
 		
 		try {
-			FileInputStream fileInput = new FileInputStream(_fileName);
+			FileInputStream fileInput = new FileInputStream(_file);
 	        ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 	        
 	        game = (Game) objectInput.readObject();
