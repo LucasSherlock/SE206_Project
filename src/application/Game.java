@@ -1,11 +1,13 @@
 package application;
 
+import java.io.Serializable;
 import java.util.*;
 
 /*
  * This class is used to instantiate Game objects.
  */
-public class Game {
+public class Game implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<String> questions;
 	private ArrayList<Integer> answers;
