@@ -7,69 +7,69 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Store {
-	private String _fileName;
-	private File _file;
-	public static String directory = System.getProperty("user.home") + File.separator + "titai";
+public class Store implements Serializable {
+	private String _outputDirectory;
+	private static final String rootDirectory = System.getProperty("user.home") + File.separator + "titai";
 	
 	
-	public Store(File file) {
-		_file = file;
-		_fileName = file.toString();
+	/*
+	 * Accepts a string argument, indicating the directory - relative to titai root dir - to serialize to
+	 */
+	public Store(String directory) {
+		_outputDirectory = rootDirectory + File.separator + directory;
+		
+		// Ensures the directory is created if it doesn't yet exist
+		new File(_outputDirectory).mkdirs();
 	}
 	
-	public Store(Game game) {
-		this(game.getName());
-	}
-	
-	public Store(String name) {		
-		new File(directory).mkdir();
-	
-		_fileName = directory + "/" + name + ".ser";
-        _file = new File(_fileName);
-	}
-	
-	public void saveGame(Game game) {
-		try {			
-			FileOutputStream fileOutput = new FileOutputStream(_file);
+	public void serializeUser(User user, String name) {
+		try {
+			String fileName = _outputDirectory + File.separator + name + ".ser";
+			File file = new File(fileName);
+			
+			FileOutputStream fileOutput = new FileOutputStream(file);
 			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 			
-			objectOutput.writeObject(game);
+			objectOutput.writeObject(user);
 	       
 			objectOutput.close();
 	        fileOutput.close();
 	        
-	        System.out.printf("Serialised game saved to " + _fileName);
+	        System.out.printf("Serialised object saved to " + fileName);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public Game loadGame() {
-		Game game = null;
+	public Object deserializeUser(String name) {
+		User user = null;
 		
 		try {
-			FileInputStream fileInput = new FileInputStream(_file);
+			String fileName = _outputDirectory + File.separator + name + ".ser";
+			File file = new File(fileName);
+			
+			FileInputStream fileInput = new FileInputStream(file);
 	        ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 	        
-	        game = (Game) objectInput.readObject();
+	        user = (User) objectInput.readObject();
 	        
 	        objectInput.close();
 	        fileInput.close();
+	        
+	        System.out.printf("Serialised object read from " + fileName);
+	        
+	        return user;
 		}
 		catch(IOException i) {
-			i.printStackTrace();
+			return null;
 	    }
 		catch (ClassNotFoundException c) {
-	    		c.printStackTrace();
+	    	c.printStackTrace();
 	    }
 		
-		return game;
-	}
-	
-	public void deleteGame() {
-		_file.delete();
-	}
+		return user;
+	}       
 }
