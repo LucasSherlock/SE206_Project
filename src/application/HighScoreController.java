@@ -23,7 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class HighScroeController implements Initializable{
+public class HighScoreController implements Initializable{
 
 	@FXML
 	public TableView easyTable;

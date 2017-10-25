@@ -48,7 +48,6 @@ public class ListController implements Initializable {
 		for (File file : files) {
 		    if (file.isFile()) {
 		        store = new Store(file);
-		        
 		        games.add(store.loadGame());
 		    }
 		}
