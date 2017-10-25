@@ -110,13 +110,12 @@ public class SelectController implements Initializable {
 	 */
 	public void viewHighScore(ActionEvent event) throws Exception{
 		
-		Parent pane = FXMLLoader.load( getClass().getResource("HighScores.fxml"));
-		Scene scene = new Scene( pane);
+		Parent pane = FXMLLoader.load(getClass().getResource("HighScores.fxml"));
+		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
 		stage.setScene(scene);
-		System.out.println("got to select screen");
 		
 	}
 	
