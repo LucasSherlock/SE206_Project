@@ -11,6 +11,7 @@ public class Game implements Serializable {
 	private String name;
 	private ArrayList<String> questions;
 	private ArrayList<Integer> answers;
+	private int highScore;
 	
 	/*
 	 * The Game constructor
@@ -19,6 +20,7 @@ public class Game implements Serializable {
 		name = "";
 		questions = new ArrayList<String>();
 		answers = new ArrayList<Integer>();
+		highScore = 0;
 	}
 	
 	/*
@@ -62,6 +64,13 @@ public class Game implements Serializable {
 	 */
 	public int getAnswer(int index) {
 		return answers.get(index);
+	}
+	
+	/*
+	 * Returns the high score
+	 */
+	public int getHighScore() {
+		return highScore;
 	}
 	
 }

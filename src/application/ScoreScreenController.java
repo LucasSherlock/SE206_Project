@@ -19,8 +19,12 @@ import javafx.stage.Stage;
 public class ScoreScreenController implements Initializable {
 	
 	@FXML
-	public Label Difficulty;
+	public Label Mode;
 	public Label Score;
+	public Label Title;
+	public Label ModeTitle;
+	public Label HarderInfo;
+	public Label HighScore;
 	public Button Harder;
 	public Button Menu;
 	
@@ -65,19 +69,30 @@ public class ScoreScreenController implements Initializable {
 	
 		
 		if(DataFile.practiceMode) {
+			Title.setText("PRACTICE OVER!");
 			if(DataFile.difficulty.equals("HARD")) {
-				Difficulty.setText(DataFile.difficulty + " (1-99)");
-				Difficulty.setTextFill(Color.RED);
+				Mode.setText(DataFile.difficulty + " (1-99)");
+				Mode.setTextFill(Color.RED);
 				DataFile.hardScores.add(Integer.toString(DataFile.score));
 			} else if(DataFile.difficulty.equals("EASY")) {
-				Difficulty.setText(DataFile.difficulty + " (1-9)");
-				Difficulty.setTextFill(Color.GREEN);
+				Mode.setText(DataFile.difficulty + " (1-9)");
+				Mode.setTextFill(Color.GREEN);
 				DataFile.easyScores.add(Integer.toString(DataFile.score));
 			}
 		} else {
-			Difficulty.setText("RANDOM");
+			if(DataFile.game.getName().equals("")) {
+				Mode.setText("RANDOM");
+			} else {
+				Mode.setText(DataFile.game.getName());
+				if(DataFile.score > DataFile.game.getHighScore()) {
+					HighScore.setVisible(true);
+				}
+			}
+			ModeTitle.setText("GAME:");
 			Harder.setVisible(false);
-		}
+			HarderInfo.setVisible(false);
+			
+		} 
 		
 		
 		Score.setText(DataFile.score+"/10");

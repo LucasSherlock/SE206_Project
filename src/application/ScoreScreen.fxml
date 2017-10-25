@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ScoreScreenController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="75.0" prefHeight="76.0" prefWidth="316.0" text="GAME OVER! " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="Title" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="75.0" prefHeight="76.0" prefWidth="316.0" text="GAME OVER! " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="24.0" />
          </font></Label>
@@ -44,7 +44,7 @@
             <Insets left="140.0" />
          </padding>
       </Label>
-      <Label contentDisplay="TOP" layoutX="149.0" layoutY="60.0" prefHeight="76.0" prefWidth="300.0" text="DIFFICULTY:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <Label fx:id="ModeTitle" contentDisplay="TOP" layoutX="149.0" layoutY="60.0" prefHeight="76.0" prefWidth="300.0" text="DIFFICULTY:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -52,8 +52,8 @@
             <Insets left="140.0" />
          </padding>
       </Label>
-      <Label layoutX="112.0" layoutY="355.0" prefHeight="45.0" prefWidth="400.0" text="***Hard Difficulty Available when score is 8/10 or better***" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-      <Label fx:id="Difficulty" layoutX="283.0" layoutY="60.0" prefHeight="76.0" text="Easy Level 1-9" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="60.0">
+      <Label fx:id="HarderInfo" layoutX="112.0" layoutY="355.0" prefHeight="45.0" prefWidth="400.0" text="***Hard Difficulty Available when score is 8/10 or better***" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+      <Label fx:id="Mode" layoutX="283.0" layoutY="60.0" prefHeight="76.0" text="Easy Level 1-9" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -68,6 +68,11 @@
          <padding>
             <Insets right="240.0" />
          </padding>
+      </Label>
+      <Label layoutX="425.0" layoutY="141.0" text="HIGH SCORE!!" textFill="#48ff00" AnchorPane.rightAnchor="30.0">
+         <font>
+            <Font size="24.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>
