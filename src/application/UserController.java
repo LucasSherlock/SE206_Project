@@ -19,9 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 /*
  * Controller class for user menu
  */
-public class UserController implements Initializable {
-
-	
+public class UserController implements Initializable {	
 	public ArrayList<User> users; 
 	public ObservableList<String> usernames = FXCollections.observableArrayList();
 	
@@ -42,8 +40,7 @@ public class UserController implements Initializable {
 		userList.setVisible(false);
 		instructions.setVisible(true);
 		input.setVisible(true);
-		confirm.setText("Confirm Name");
-		
+		confirm.setText("Confirm Name");	
 	}
 	
 	/*
@@ -56,15 +53,18 @@ public class UserController implements Initializable {
 		} else {
 			//when confirming new username
 			
-			if(usernames.contains(input.getText())) {
-				//if name already exists
+			if (User.userExists(input.getText())) {
+				// User already exists in storage
 				errorPopup("Name exists, enter new name.");
 				input.clear();
-			} else {
-				User newUser = new User(input.getText());
+			}
+			else {
+				User newUser = User.getUser(input.getText());
+				
 				users.add(newUser);
 				usernames.add(newUser.getUsername());
-				//hide user list and show text field to input name
+				
+				// Hide user list and show text field to input name
 				userList.setVisible(true);
 				instructions.setVisible(false);
 				input.setVisible(false);
