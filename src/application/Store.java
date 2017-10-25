@@ -63,11 +63,8 @@ public class Store implements Serializable {
 	        
 	        return user;
 		}
-		catch (FileNotFoundException f) {
-			return null;
-		}
 		catch(IOException i) {
-			i.printStackTrace();
+			return null;
 	    }
 		catch (ClassNotFoundException c) {
 	    	c.printStackTrace();
