@@ -8,13 +8,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 /*
  * Controller class for user menu
@@ -51,10 +56,29 @@ public class UserController implements Initializable {
 	 */
 	public void select(ActionEvent ae) {
 		if(userList.isVisible()) {
-			//when selecting user
-			//TODO go to next screen and set user
+			// when selecting user
+			if(userList.getSelectionModel().isEmpty()) {
+				// nothing is selected
+				errorPopup("Select a user.");
+			} else {
+				// set current user to selected user
+				DataFile.user = findUser(userList.getSelectionModel().getSelectedItem());
+				
+				
+				// go to list screen
+				try {
+					Parent pane;
+					pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+					stage.setScene(scene);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+	
 		} else {
-			//when confirming new username
+			// when confirming new username
 			
 			if(usernames.contains(input.getText())) {
 				//if name already exists
@@ -91,12 +115,28 @@ public class UserController implements Initializable {
 		userList.setItems(usernames); //make list display the users
 	}
 	
-	
+	/*
+	 * multi-use error popup
+	 */
 	public void errorPopup(String message) {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("Error");
 		error.setContentText(message);
 		error.showAndWait();
+	}
+	
+	
+	/*
+	 * given the name of a user (selected from list), get the user object. 
+	 */
+	public User findUser(String username) {
+		for(User user : users) {
+			if(user.getUsername().equals(username)) {
+				return user;
+			}
+		}
+		return null; //should be unreachable
+		
 	}
 	
 	

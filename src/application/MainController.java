@@ -43,7 +43,7 @@ public class MainController {
 
 	public void start(ActionEvent event) throws Exception {
 
-		Parent pane = FXMLLoader.load( getClass().getResource("InitialScreen.fxml"));
+		Parent pane = FXMLLoader.load( getClass().getResource("UserSelect.fxml"));
 		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
