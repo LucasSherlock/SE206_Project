@@ -21,7 +21,7 @@ public class User implements Serializable {
 		_username = username;
 		
 		// Writes the user to disk
-		saveUser(store);
+		saveUser();
 	}
 	
 	/*
@@ -58,8 +58,37 @@ public class User implements Serializable {
 	/*
 	 * add a game object to user's game list
 	 */
-	public void addGame(Game g) {
-		_gamesList.add(g);
+	public void addGame(Game game) {
+		_gamesList.add(game);
+	}
+	
+	/*
+	 * Deletes a game from the users list
+	 */
+	public void deleteGame(String name) {
+		Game game = findGame(name);
+		
+		if (game != null) {
+			_gamesList.remove(game);
+		}
+	}
+	
+	public void deleteGame(Game game) {
+		_gamesList.remove(game);
+	}
+	
+	/*
+	 * Returns a game with a given name
+	 */
+	public Game findGame(String name) {
+		for (Game game: _gamesList) {
+			if (game.getName().equals(name)) {
+				return game;
+			}
+		}
+		
+		// Named game not found
+		return null;
 	}
 	
 	/*
@@ -72,7 +101,7 @@ public class User implements Serializable {
 	/*
 	 * Persists a user instance in the Store
 	 */
-	public void saveUser(Store store) {
+	public void saveUser() {
 		_store.serializeUser(this, _username);
 	}
 	

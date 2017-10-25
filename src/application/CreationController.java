@@ -76,9 +76,11 @@ public class CreationController implements Initializable {
 		// Exits the creation view if the required number of questions have been added
 		if(newGame.size() == finalListLength) {
 			try {
-				// Stores the game on disk
-				Store store = new Store(newGame.getName());
-				store.saveGame(newGame);
+				// Updates the current users game list
+				DataFile.user.addGame(newGame);
+				
+				// Saves the user object to disk to prevent data loss
+				DataFile.user.saveUser();
 				
 				// Returns the user back to the list view
 				Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));

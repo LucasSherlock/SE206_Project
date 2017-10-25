@@ -41,6 +41,13 @@ public class ListController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		games = DataFile.user.getGames();
+		
+		items.clear();
+		
+		for (Game game: games) {
+			items.add(game.getName());
+		}
+		
 		QuestionList.setItems(items);
 	}
 	
@@ -79,7 +86,7 @@ public class ListController implements Initializable {
 			if(QuestionList.getSelectionModel().isEmpty()) {
 				errorPopup();
 			} else {
-				DataFile.game = games.findGame(QuestionList.getSelectionModel().getSelectedItem());
+				DataFile.game = DataFile.user.findGame(QuestionList.getSelectionModel().getSelectedItem());
 				DataFile.practiceMode = false;
 				try {
 					Parent pane;
@@ -127,12 +134,10 @@ public class ListController implements Initializable {
 		if(QuestionList.getSelectionModel().isEmpty()) {
 			errorPopup();
 		} else {
-			Game game = games.findGame(QuestionList.getSelectionModel().getSelectedItem());
+			// Updates the users game list, since the controller holds a reference
+			// to the users games the controllers list should update too
+			DataFile.user.deleteGame(QuestionList.getSelectionModel().getSelectedItem());
 			
-			Store store = new Store(game);
-			store.deleteGame();
-			
-			games.remove(game);
 			items.remove(QuestionList.getSelectionModel().getSelectedIndex());
 		}
 	}
