@@ -63,6 +63,13 @@ public class User implements Serializable {
 	}
 	
 	/*
+	 * Returns all the users games
+	 */
+	public ArrayList<Game> getGames() {
+		return _gamesList;
+	}
+	
+	/*
 	 * Persists a user instance in the Store
 	 */
 	public void saveUser(Store store) {

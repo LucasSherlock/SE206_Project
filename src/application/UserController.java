@@ -131,8 +131,7 @@ public class UserController implements Initializable {
 				return user;
 			}
 		}
-		return null; //should be unreachable
-		
+		return null; //should be unreachable	
 	}
 	
 	

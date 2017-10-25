@@ -3,6 +3,7 @@ package application;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  * This class is the controller for the list view.
  */
 public class ListController implements Initializable {	
-	public static GameList games = new GameList();
+	public static ArrayList<Game> games;
 	public static ObservableList<String> items = FXCollections.observableArrayList();
 	
 	@FXML
@@ -39,19 +40,7 @@ public class ListController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		File[] files = new File(Store.directory).listFiles();
-		Store store = null;
-		
-		games.clear();
-		items.clear();
-		
-		for (File file : files) {
-		    if (file.isFile()) {
-		        store = new Store(file);
-		        games.add(store.loadGame());
-		    }
-		}
-		
+		games = DataFile.user.getGames();
 		QuestionList.setItems(items);
 	}
 	
