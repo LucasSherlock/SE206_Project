@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Store implements Serializable {
 	private String _outputDirectory;
@@ -37,18 +38,22 @@ public class Store implements Serializable {
 			objectOutput.close();
 	        fileOutput.close();
 	        
-	        System.out.printf("Serialised object saved to " + fileName);
+	        System.out.println("Serialised object saved to " + fileName);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public Object deserializeUser(String name) {
+	public User deserializeUser(String name) {
+		return deserializeUser(name, _outputDirectory);
+	}
+	
+	public User deserializeUser(String name, String sourceDirectory) {
 		User user = null;
 		
 		try {
-			String fileName = _outputDirectory + File.separator + name + ".ser";
+			String fileName = sourceDirectory + File.separator + name + ".ser";
 			File file = new File(fileName);
 			
 			FileInputStream fileInput = new FileInputStream(file);
@@ -59,7 +64,7 @@ public class Store implements Serializable {
 	        objectInput.close();
 	        fileInput.close();
 	        
-	        System.out.printf("Serialised object read from " + fileName);
+	        System.out.println("Serialised object read from " + fileName);
 	        
 	        return user;
 		}
@@ -71,5 +76,24 @@ public class Store implements Serializable {
 	    }
 		
 		return user;
-	}       
+	}
+	
+	public ArrayList<User> deserializeAllUsers() {
+		ArrayList<User> output = new ArrayList<User>();
+		
+		File userFolder = new File(_outputDirectory);
+		File[] fileList = userFolder.listFiles();
+
+		for (File file : fileList) {
+		    if (file.isDirectory()) {
+		    	User user = deserializeUser(file.getName(), _outputDirectory + File.separator + file.getName());
+		    	
+		    	if (user != null) {
+		    		output.add(user);
+		    	}
+		    }
+		}
+		
+		return output;
+	}
 }

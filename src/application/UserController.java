@@ -47,8 +47,7 @@ public class UserController implements Initializable {
 		userList.setVisible(false);
 		instructions.setVisible(true);
 		input.setVisible(true);
-		confirm.setText("Confirm Name");
-		
+		confirm.setText("Confirm Name");	
 	}
 	
 	/*
@@ -63,8 +62,7 @@ public class UserController implements Initializable {
 			} else {
 				// set current user to selected user
 				DataFile.user = findUser(userList.getSelectionModel().getSelectedItem());
-				
-				
+		
 				// go to list screen
 				try {
 					Parent pane;
@@ -78,17 +76,18 @@ public class UserController implements Initializable {
 			}
 	
 		} else {
-			// when confirming new username
-			
-			if(usernames.contains(input.getText())) {
-				//if name already exists
+			// When confirming new username	
+			if(User.userExists(input.getText())) {
+				// Name already exists
 				errorPopup("Name exists, enter new name.");
 				input.clear();
 			} else {
-				User newUser = new User(input.getText());
+				User newUser = User.getUser(input.getText());
+
 				users.add(newUser);
 				usernames.add(newUser.getUsername());
-				//hide user list and show text field to input name
+				
+				// Hide user list and show text field to input name
 				userList.setVisible(true);
 				instructions.setVisible(false);
 				input.setVisible(false);
@@ -100,17 +99,14 @@ public class UserController implements Initializable {
 	
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		//TODO add serialization of users and get here
-		
-		users = new ArrayList<User>(); // placeholder before serialization
+	public void initialize(URL location, ResourceBundle resources) {	
+		Store store = new Store("users");
+		users = store.deserializeAllUsers();
 		
 		//take list of users and add names to observable list so they are displayed in the GUI
 		for(User user : users) {
 			usernames.add(user.getUsername());
 		}
-		
 		
 		userList.setItems(usernames); //make list display the users
 	}
