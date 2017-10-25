@@ -34,7 +34,7 @@ public class ScoreScreenController implements Initializable {
 			
 			
 			
-			Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);

@@ -5,21 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ListController">
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ListController">
    <children>
       <ListView fx:id="QuestionList" layoutX="171.0" layoutY="51.0" prefHeight="319.0" prefWidth="700.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
       <HBox layoutY="-1.0" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
          <children>
-            <Button fx:id="newList" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createNew" prefHeight="161.0" prefWidth="10000.0" style="-fx-background-radius: 0;" text="Add List" />
+            <Button fx:id="newList" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#move" prefHeight="161.0" prefWidth="10000.0" style="-fx-background-radius: 0;" text="Add List" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="189.0" prefWidth="10000.0" style="-fx-background-radius: 0;" text="Edit List" />
             <Button fx:id="delete" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteList" prefHeight="172.0" prefWidth="10000.0" style="-fx-background-radius: 0px;" text="Delete List" />
          </children>
       </HBox>
-      <HBox layoutY="371.0" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="702.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox layoutY="371.0" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="702.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
          <children>
-            <Button fx:id="playRandom" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playGame" prefHeight="161.0" prefWidth="10000.0" style="-fx-background-radius: 0;" text="Random List" />
-            <Button fx:id="play" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playGame" prefHeight="189.0" prefWidth="10000.0" style="-fx-background-radius: 0;" text="Play" />
-            <Button fx:id="practice" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#practiceMode" prefHeight="172.0" prefWidth="10000.0" style="-fx-background-radius: 0px;" text="Practice Mode" />
+            <Button fx:id="play" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playGame" prefHeight="189.0" prefWidth="200.0" style="-fx-background-radius: 0;" text="Play" />
+            <Button mnemonicParsing="false" onAction="#move" prefWidth="200.0" text="Back" />
          </children>
       </HBox>
    </children>

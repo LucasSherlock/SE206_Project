@@ -63,10 +63,10 @@ public class UserController implements Initializable {
 				// set current user to selected user
 				DataFile.user = findUser(userList.getSelectionModel().getSelectedItem());
 		
-				// go to list screen
+				// go to select screen
 				try {
 					Parent pane;
-					pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+					pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 					stage.setScene(scene);

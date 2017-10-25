@@ -30,11 +30,10 @@ public class ListController implements Initializable {
 	public static ObservableList<String> items = FXCollections.observableArrayList();
 	
 	@FXML
-	public Button practice;
-	public Button playRandom;
 	public Button play;
 	public Button delete;
 	public Button newList;
+	public Button back;
 	public ListView<String> QuestionList = new ListView<String>();
 
 	
@@ -52,27 +51,14 @@ public class ListController implements Initializable {
 	}
 	
 	
-	public void setRandom() {
-		DataFile.practiceMode = false;
-		int arg1;
-		int arg2;
-		int ans;
-		DataFile.game = new Game();
-		for(int i = 0; i < 10; i++) {
-			ans = new Random().nextInt(99) + 1;
-			arg1 = new Random().nextInt(ans-1) + 1;
-			arg2 = ans - arg1;
-			DataFile.game.add(arg1, arg2);			
-		}
-	}
+
 	
 	public void playGame(ActionEvent ae) {
-		DataFile.CorrectAnswer = false;
-		DataFile.score = 0;
-		DataFile.Level = 0;
-		DataFile.trial = 1;
-		if(ae.getSource() == playRandom) {
-			setRandom();
+		if(QuestionList.getSelectionModel().isEmpty()) {
+			errorPopup();
+		} else {
+			DataFile.game = DataFile.user.findGame(QuestionList.getSelectionModel().getSelectedItem());
+			DataFile.practiceMode = false;
 			try {
 				Parent pane;
 				pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
@@ -82,45 +68,18 @@ public class ListController implements Initializable {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		} else if(ae.getSource() == play) {
-			if(QuestionList.getSelectionModel().isEmpty()) {
-				errorPopup();
+		}	
+	}
+	
+	
+	public void move(ActionEvent ae) {
+		try {
+			Parent pane;
+			if(ae.getSource() == newList) {
+				pane = FXMLLoader.load(getClass().getResource("GameCreator.fxml"));
 			} else {
-				DataFile.game = DataFile.user.findGame(QuestionList.getSelectionModel().getSelectedItem());
-				DataFile.practiceMode = false;
-				try {
-					Parent pane;
-					pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
-					stage.setScene(scene);
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-			}	
-		}
-	}
-	
-	public void practiceMode(ActionEvent ae) {
-		
-		try {
-			
-			DataFile.practiceMode = true;
-			Parent pane;
-			pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
-			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
-			stage.setScene(scene);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void createNew(ActionEvent ae) {
-		try {
-			Parent pane;
-			pane = FXMLLoader.load(getClass().getResource("GameCreator.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
+			}
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
@@ -148,6 +107,8 @@ public class ListController implements Initializable {
 		noSelection.setContentText("Please select a list.");
 		noSelection.showAndWait();
 	}
+	
+
 	
 	
 }

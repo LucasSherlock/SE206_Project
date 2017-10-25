@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ScoreScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ScoreScreenController">
    <children>
       <Label fx:id="Title" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="75.0" prefHeight="76.0" prefWidth="316.0" text="GAME OVER! " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
@@ -69,7 +69,7 @@
             <Insets right="240.0" />
          </padding>
       </Label>
-      <Label layoutX="425.0" layoutY="141.0" text="HIGH SCORE!!" textFill="#48ff00" AnchorPane.rightAnchor="30.0">
+      <Label fx:id="HighScore" layoutX="425.0" layoutY="141.0" prefHeight="76.0" text="HIGH SCORE!!" textFill="#48ff00" visible="false" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="120.0">
          <font>
             <Font size="24.0" />
          </font>
