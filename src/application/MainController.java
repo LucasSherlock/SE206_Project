@@ -33,18 +33,16 @@ public class MainController {
 	public SplitPane buttons;
 	
 
-
+	/*
+	 * Transitions to the user select view
+	 */
 	public void start(ActionEvent event) throws Exception {
-
 		Parent pane = FXMLLoader.load( getClass().getResource("UserSelect.fxml"));
 		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 
 		stage.setScene(scene);
-
-
-
 	}
 
 
