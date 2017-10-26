@@ -56,10 +56,16 @@ public class SelectController implements Initializable {
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
-				Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
-				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+				
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../UserGames.fxml"));
+				Parent pane = loader.load();
+				Scene scene = new Scene(pane);
 				stage.setScene(scene);
+
+				// Execute shutdown on window close
+				UserGamesController controller = loader.getController();
+				stage.setOnHidden(e -> controller.shutdown());
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
