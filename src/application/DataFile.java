@@ -2,6 +2,9 @@ package application;
 
 import java.util.ArrayList;
 
+import application.models.Game;
+import application.models.User;
+
 /*
  * Contains vital information for current session
  */

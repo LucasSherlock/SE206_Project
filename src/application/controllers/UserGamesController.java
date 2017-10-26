@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import application.DataFile;
-import application.Game;
+import application.models.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

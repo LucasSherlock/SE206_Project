@@ -1,4 +1,4 @@
-package application;
+package application.models;
 
 import java.io.Serializable;
 import java.util.*;

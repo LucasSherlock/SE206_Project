@@ -1,4 +1,4 @@
-package application;
+package application.models;
 
 import java.io.Serializable;
 import java.util.*;
@@ -10,13 +10,13 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String _username;
 	private ArrayList<Game> _gamesList = new ArrayList<Game>();
-	private Store _store;
+	private Repo _store;
 	
 	/*
 	 * The user constructor is private to ensure that only one user with a given name
 	 * can ever exist - a singleton-like pattern.
 	 */
-	private User(Store store, String username) {
+	private User(Repo store, String username) {
 		_store = store;
 		_username = username;
 		
@@ -29,7 +29,7 @@ public class User implements Serializable {
 	 * one will be instantiated, otherwise the stored user will be returned.
 	 */
 	public static User getUser(String username) {
-		Store store = new Store("users/" + username);
+		Repo store = new Repo("users/" + username);
 		User loadedUser;
 		
 		// Attempt to load the user, if user exists return the user
@@ -45,7 +45,7 @@ public class User implements Serializable {
 	 * Static method. Returns a boolean indicating if a user exists in the Store.
 	 */
 	public static boolean userExists(String username) {
-		Store store = new Store("users/" + username);	
+		Repo store = new Repo("users/" + username);	
 		
 		// Attempt to load the user, if user exists return true
 		if (loadUser(store, username) != null) {
@@ -108,7 +108,7 @@ public class User implements Serializable {
 	/*
 	 * Loads a persisted user instance from the Store. If the user does not exists null is returned
 	 */
-	private static User loadUser(Store store, String username) {
+	private static User loadUser(Repo store, String username) {
 		return (User) store.deserializeUser(username);
 	}
 

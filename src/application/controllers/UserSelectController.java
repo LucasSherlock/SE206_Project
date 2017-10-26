@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.DataFile;
-import application.Store;
-import application.User;
+import application.models.Repo;
+import application.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -101,7 +101,7 @@ public class UserSelectController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
-		Store store = new Store("users");
+		Repo store = new Repo("users");
 		users = store.deserializeAllUsers();
 		
 		//take list of users and add names to observable list so they are displayed in the GUI

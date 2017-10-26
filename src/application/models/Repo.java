@@ -1,4 +1,4 @@
-package application;
+package application.models;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Store implements Serializable {
+public class Repo implements Serializable {
 	private String _outputDirectory;
 	private static final String rootDirectory = System.getProperty("user.home") + File.separator + "titai";
 	
@@ -18,7 +18,7 @@ public class Store implements Serializable {
 	/*
 	 * Accepts a string argument, indicating the directory - relative to titai root dir - to serialize to
 	 */
-	public Store(String directory) {
+	public Repo(String directory) {
 		_outputDirectory = rootDirectory + File.separator + directory;
 		
 		// Ensures the directory is created if it doesn't yet exist
