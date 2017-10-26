@@ -12,14 +12,14 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String _username;
 	private ArrayList<Game> _gamesList = new ArrayList<Game>();
-	private Repo _store;
+	private LocalRepo _repo;
 	
 	/*
 	 * The user constructor is private to ensure that only one user with a given name
 	 * can ever exist - a singleton-like pattern.
 	 */
-	private User(Repo store, String username) {
-		_store = store;
+	private User(LocalRepo store, String username) {
+		_repo = store;
 		_username = username;
 		
 		// Writes the user to disk
@@ -31,7 +31,7 @@ public class User implements Serializable {
 	 * one will be instantiated, otherwise the stored user will be returned.
 	 */
 	public static User getUser(String username) {
-		Repo store = new Repo("users/" + username);
+		LocalRepo store = new LocalRepo("users/" + username);
 		User loadedUser;
 		
 		// Attempt to load the user, if user exists return the user
@@ -47,7 +47,7 @@ public class User implements Serializable {
 	 * Static method. Returns a boolean indicating if a user exists in the Store.
 	 */
 	public static boolean userExists(String username) {
-		Repo store = new Repo("users/" + username);	
+		LocalRepo store = new LocalRepo("users/" + username);	
 		
 		// Attempt to load the user, if user exists return true
 		if (loadUser(store, username) != null) {
@@ -104,14 +104,14 @@ public class User implements Serializable {
 	 * Persists a user instance in the Store
 	 */
 	public void saveUser() {
-		_store.serializeUser(this, _username);
+		_repo.putUser(this, _username);
 	}
 	
 	/*
 	 * Loads a persisted user instance from the Store. If the user does not exists null is returned
 	 */
-	private static User loadUser(Repo store, String username) {
-		return (User) store.deserializeUser(username);
+	private static User loadUser(LocalRepo store, String username) {
+		return (User) store.getUser(username);
 	}
 
 	/**

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.DataFile;
-import application.models.Repo;
+import application.models.LocalRepo;
 import application.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,8 +103,8 @@ public class UserSelectController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
-		Repo store = new Repo("users");
-		users = store.deserializeAllUsers();
+		LocalRepo store = new LocalRepo("users");
+		users = store.getAllUsers();
 		
 		//take list of users and add names to observable list so they are displayed in the GUI
 		for(User user : users) {
