@@ -84,7 +84,7 @@ public class UserGamesController implements Initializable {
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
-			} else if(editQuestion.isVisible() && ae.getSource() == back) {
+			} else if(!editQuestion.isDisabled() && ae.getSource() == back) {
 				DataFile.editingList = false;
 				editQuestion.setDisable(true);
 				QuestionList.setItems(items);

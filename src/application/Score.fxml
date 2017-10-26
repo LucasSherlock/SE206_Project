@@ -52,8 +52,7 @@
             <Insets left="140.0" />
          </padding>
       </Label>
-      <Label fx:id="HarderInfo" layoutX="112.0" layoutY="355.0" prefHeight="45.0" prefWidth="400.0" text="***Hard Difficulty Available when score is 8/10 or better***" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-      <Label fx:id="Mode" layoutX="283.0" layoutY="60.0" prefHeight="76.0" text="Easy Level 1-9" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="60.0">
+      <Label fx:id="Mode" layoutX="404.0" layoutY="60.0" prefHeight="76.0" prefWidth="300.0" text="Easy Level 1-9" wrapText="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -61,7 +60,7 @@
             <Insets right="180.0" />
          </padding>
       </Label>
-      <Label fx:id="Score" layoutX="328.0" layoutY="148.0" prefHeight="76.0" text="Label" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+      <Label fx:id="Score" layoutX="328.0" layoutY="148.0" prefHeight="76.0" prefWidth="300.0" text="Label" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -74,5 +73,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="HarderInfo" layoutX="112.0" layoutY="355.0" prefHeight="45.0" prefWidth="400.0" text="***Hard Difficulty Available when score is 8/10 or better***" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
    </children>
 </AnchorPane>
