@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -39,6 +40,8 @@ public class UserSelectController implements Initializable {
 	public ListView<String> userList;
 	public Label instructions;
 	public TextField input;
+	public VBox selectBox;
+	public VBox createBox;
 	
 	
 	@Override
@@ -73,9 +76,8 @@ public class UserSelectController implements Initializable {
 	 * Called when the create user button is activated
 	 */
 	public void createUser() {
-		userList.setVisible(false);
-		instructions.setVisible(true);	
-		input.setVisible(true);
+		selectBox.setVisible(false);
+		createBox.setVisible(true);
 		
 		confirm.setText("Confirm Name");	
 	}
@@ -99,47 +101,48 @@ public class UserSelectController implements Initializable {
 		}
 	}
 	
+	public void confirmNewUser(ActionEvent ae) {
+		if(User.userExists(input.getText())) {
+			// Name already exists
+			errorPopup("Name exists, enter new name.");
+			input.clear();
+		} else {
+			User newUser = User.getUser(input.getText());
+
+			users.add(newUser);
+			usernames.add(newUser.getUsername());
+			
+			// Hide user list and show text field to input name
+			selectBox.setVisible(true);
+			createBox.setVisible(false);
+			confirm.setText("Confirm Selection");
+		}
+	}
+	
 	/*
 	 * Called when the confirm user button is activated. Navigates to the play options menu.
 	 */
-	public void select(ActionEvent ae) {
-		if(userList.isVisible()) {
-			if(userList.getSelectionModel().isEmpty()) {
-				// No user is selected
-				errorPopup("Select a user.");
-			} else {
-				// Set current user to selected user
-				DataFile.user = getSelectedUser();
-		
-				// go to select screen
-				try {
-					Parent pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
-					
-					stage.setScene(scene);
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-			}
-	
+	public void selectUser(ActionEvent ae) {
+		if(userList.getSelectionModel().isEmpty()) {
+			// No user is selected
+			errorPopup("Select a user.");
 		} else {
-			// When confirming new username	
-			if(User.userExists(input.getText())) {
-				// Name already exists
-				errorPopup("Name exists, enter new name.");
-				input.clear();
-			} else {
-				User newUser = User.getUser(input.getText());
-
-				users.add(newUser);
-				usernames.add(newUser.getUsername());
+			// Set current user to selected user
+			DataFile.user = getSelectedUser();
+	
+			// go to select screen
+			try {
+				Parent pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
+				Scene scene = new Scene(pane);			
+				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				
-				// Hide user list and show text field to input name
-				userList.setVisible(true);
-				instructions.setVisible(false);
-				input.setVisible(false);
-				confirm.setText("Confirm Selection");
+				stage.setHeight(500);
+				stage.setWidth(600);
+				stage.setTitle("Titai!");
+				
+				stage.setScene(scene);
+			} catch(Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}

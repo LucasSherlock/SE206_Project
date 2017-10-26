@@ -30,6 +30,10 @@ public class MainController {
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		
+		stage.setHeight(400);
+		stage.setWidth(300);
+		stage.setTitle("Select a user");
 
 		stage.setScene(scene);
 	}

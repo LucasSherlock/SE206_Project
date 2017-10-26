@@ -1,7 +1,12 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .root {
-  -fx-font: 14px Vivaldi;
+  -fx-font: 14px "Trebuchet MS", Helvetica, sans-serif;
+  -fx-background-color: #CFD8DC;
+}
+
+.root .label {
+	-fx-text-fill: #212121;
 }
 
 .menu-button {
@@ -23,4 +28,16 @@
 
 .menu-button:hover {
 	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 1, 1);
+}
+
+.main-menu-button {
+	-fx-text-fill: #FFFFFF;
+	-fx-background-color: #FF5252;
+	-fx-font-size: 22px;
+	-fx-border-radius: 50px;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 5);
+}
+
+.main-menu-button:pressed {
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
 }
