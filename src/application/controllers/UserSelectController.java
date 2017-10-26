@@ -41,6 +41,33 @@ public class UserSelectController implements Initializable {
 	public TextField input;
 	
 	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {	
+		LocalRepo store = new LocalRepo();
+		users = store.getAllUsers();
+		
+		//take list of users and add names to observable list so they are displayed in the GUI
+		for(User user : users) {
+			usernames.add(user.getUsername());
+		}
+		
+		userList.setItems(usernames); //make list display the users
+	}
+	
+	/*
+	 * Returns the selected user or null
+	 */
+	public User getSelectedUser() {
+		if(userList.getSelectionModel().isEmpty()) {
+			return null;
+		}
+		else {
+			String username = userList.getSelectionModel().getSelectedItem();
+			return findUser(username);
+		}
+	}
+	
+	
 	/*
 	 * called when create user button is pressed
 	 */
@@ -50,6 +77,25 @@ public class UserSelectController implements Initializable {
 		instructions.setVisible(true);
 		input.setVisible(true);
 		confirm.setText("Confirm Name");	
+	}
+	
+	/*
+	 * Deletes the user
+	 */
+	public void deleteUser() {
+		User user;
+		
+		if ((user = getSelectedUser()) != null) {	
+			if (user.deleteUser()) {
+				// User was successfully deleted from the Repo
+				users.remove(user);
+				usernames.remove(user.getUsername());
+			}
+			else {
+				// User could not be deleted from the Repo
+				errorPopup("Unable to delete user.");
+			}
+		}
 	}
 	
 	/*
@@ -96,21 +142,6 @@ public class UserSelectController implements Initializable {
 				confirm.setText("Confirm Selection");
 			}
 		}
-	}
-	
-	
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {	
-		LocalRepo store = new LocalRepo("users");
-		users = store.getAllUsers();
-		
-		//take list of users and add names to observable list so they are displayed in the GUI
-		for(User user : users) {
-			usernames.add(user.getUsername());
-		}
-		
-		userList.setItems(usernames); //make list display the users
 	}
 	
 	/*

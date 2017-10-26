@@ -14,52 +14,58 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("serial")
 public class LocalRepo implements Repo {
-	private String _outputDirectory;
-	private static final String rootDirectory = System.getProperty("user.home") + File.separator + "titai";
+	private String _rootDirectory = System.getProperty("user.home") + File.separator + "titai";
+	private String _userDirectory;
 	
 	
-	/*
-	 * Accepts a string argument, indicating the directory - relative to titai root dir - to serialize to
-	 */
-	public LocalRepo(String directory) {
-		_outputDirectory = rootDirectory + File.separator + directory;
+	public LocalRepo() {
+		_userDirectory = _rootDirectory + File.separator + "users";
 		
-		// Ensures the directory is created if it doesn't yet exist
-		new File(_outputDirectory).mkdirs();
+		// Ensures the output directories exist
+		new File(_rootDirectory).mkdirs();
+		new File(_userDirectory).mkdir();
 	}
 	
-	public void putUser(User user, String name) {
+	@Override
+	public boolean putUser(User user, String id) {
 		try {
-			String fileName = _outputDirectory + File.separator + name + ".ser";
-			File file = new File(fileName);
+			String outputDirectory = _userDirectory + File.separator + id;
+			String outputFile = outputDirectory + File.separator + id + ".ser";
+			
+			// Ensures the output directory exists
+			new File(outputDirectory).mkdir();
+			
+			// The file to write the serialized user to
+			File file = new File(outputFile);
 			
 			FileOutputStream fileOutput = new FileOutputStream(file);
 			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
 			
+			// Stream the serialized object into the file
 			objectOutput.writeObject(user);
 	       
 			objectOutput.close();
 	        fileOutput.close();
 	        
-	        System.out.println("Serialised object saved to " + fileName);
+	        System.out.println("Serialised object saved to " + outputFile);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
+		
+		return true;
 	}
 	
-	public User getUser(String name) {
-		return getUser(name, _outputDirectory);
-	}
-	
-	private User getUser(String name, String sourceDirectory) {
+	@Override	
+	public User getUser(String id) {
 		User user = null;
 		
 		try {
-			String fileName = sourceDirectory + File.separator + name + ".ser";
-			File file = new File(fileName);
+			String userPath = _userDirectory + File.separator + id + File.separator + id + ".ser";
+			File userFile = new File(userPath);
 			
-			FileInputStream fileInput = new FileInputStream(file);
+			FileInputStream fileInput = new FileInputStream(userFile);
 	        ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 	        
 	        user = (User) objectInput.readObject();
@@ -67,7 +73,7 @@ public class LocalRepo implements Repo {
 	        objectInput.close();
 	        fileInput.close();
 	        
-	        System.out.println("Serialised object read from " + fileName);
+	        System.out.println("Serialised object read from " + userPath);
 	        
 	        return user;
 		}
@@ -81,22 +87,66 @@ public class LocalRepo implements Repo {
 		return user;
 	}
 	
+	@Override
 	public ArrayList<User> getAllUsers() {
 		ArrayList<User> output = new ArrayList<User>();
 		
-		File userFolder = new File(_outputDirectory);
+		File userFolder = new File(_userDirectory);
 		File[] fileList = userFolder.listFiles();
 
-		for (File file : fileList) {
-		    if (file.isDirectory()) {
-		    	User user = getUser(file.getName(), _outputDirectory + File.separator + file.getName());
-		    	
-		    	if (user != null) {
-		    		output.add(user);
-		    	}
-		    }
+		if (fileList != null) {
+			for (File file : fileList) {
+			    if (file.isDirectory()) {
+			    	User user = getUser(file.getName());
+			    	
+			    	if (user != null) {
+			    		output.add(user);
+			    	}
+			    }
+			}
 		}
 		
 		return output;
+	}
+
+	@Override
+	public boolean deleteUser(String id) {
+		String directoryPath = _userDirectory + File.separator + id;
+		File directory = new File(directoryPath);
+		
+		return recursiveDelete(directory);
+	}
+	
+	/*
+	 * Recursively deletes all files in a directory, including all sub-directories
+	 */
+	private boolean recursiveDelete(File directory) throws RuntimeException {
+		try {
+			for (File file: directory.listFiles()) {
+				if (file.isDirectory()) {
+					recursiveDelete(file);
+				}
+				else {
+					deleteOrThrow(file);
+				}
+			}
+			
+			deleteOrThrow(directory);
+		}
+		catch (RuntimeException e) {
+			e.printStackTrace();			
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/*
+	 * Tries to delete a file, if unsuccessful throws RunTimeException
+	 */
+	private void deleteOrThrow(File file) throws RuntimeException {
+		if (file.delete() == false) {
+			throw new RuntimeException("Failed to delete file.");
+		}
 	}
 }

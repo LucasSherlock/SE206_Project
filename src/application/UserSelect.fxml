@@ -21,7 +21,7 @@
       <HBox layoutX="93.0" layoutY="100.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="create" mnemonicParsing="false" onAction="#createUser" prefHeight="50.0" prefWidth="200.0" text="Create User" />
-            <Button fx:id="delete" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Delete User" />
+            <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteUser" prefHeight="50.0" prefWidth="200.0" text="Delete User" />
          </children>
       </HBox>
    </children>

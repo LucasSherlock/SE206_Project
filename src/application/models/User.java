@@ -30,23 +30,44 @@ public class User implements Serializable {
 	 * one will be instantiated, otherwise the stored user will be returned.
 	 */
 	public static User getUser(String username) {
-		LocalRepo store = new LocalRepo("users/" + username);
+		LocalRepo repo = new LocalRepo();
 		User loadedUser;
 		
 		// Attempt to load the user, if user exists return the user
-		if ((loadedUser = loadUser(store, username)) != null) {
+		if ((loadedUser = loadUser(repo, username)) != null) {
 			return loadedUser;
 		}
 		
 		// User does not yet exist, create a new user
-		return new User(store, username);
+		return new User(repo, username);
+	}
+	
+	/*
+	 * Persists a user instance in the Repo
+	 */
+	public void saveUser() {
+		_repo.putUser(this, _username);
+	}
+	
+	/*
+	 * Deletes the user
+	 */
+	public boolean deleteUser() {
+		return _repo.deleteUser(_username);
+	}
+	
+	/*
+	 * Loads a persisted user instance from the Store. If the user does not exists null is returned
+	 */
+	private static User loadUser(LocalRepo store, String username) {
+		return (User) store.getUser(username);
 	}
 	
 	/*
 	 * Static method. Returns a boolean indicating if a user exists in the Store.
 	 */
 	public static boolean userExists(String username) {
-		LocalRepo store = new LocalRepo("users/" + username);	
+		LocalRepo store = new LocalRepo();	
 		
 		// Attempt to load the user, if user exists return true
 		if (loadUser(store, username) != null) {
@@ -97,20 +118,6 @@ public class User implements Serializable {
 	 */
 	public ArrayList<Game> getGames() {
 		return _gamesList;
-	}
-	
-	/*
-	 * Persists a user instance in the Store
-	 */
-	public void saveUser() {
-		_repo.putUser(this, _username);
-	}
-	
-	/*
-	 * Loads a persisted user instance from the Store. If the user does not exists null is returned
-	 */
-	private static User loadUser(LocalRepo store, String username) {
-		return (User) store.getUser(username);
 	}
 
 	/**
