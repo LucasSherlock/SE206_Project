@@ -10,14 +10,12 @@ import java.util.ResourceBundle;
 
 import application.DataFile;
 import application.Main;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -29,7 +27,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 public class QuestionController implements Initializable {
 	@FXML
@@ -74,7 +71,6 @@ public class QuestionController implements Initializable {
 			
 			Scene scene = new Scene(pane);
 			Main.mainStage.setScene(scene);
-			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 
 		}
 

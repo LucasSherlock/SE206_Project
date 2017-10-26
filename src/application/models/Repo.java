@@ -1,12 +1,14 @@
 package application.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 
 /*
  * Defines an interface for a repository, which can be used to store and
  * retrieve persisted data.
  */
-public interface Repo {
+public interface Repo extends Serializable {
 	/*
 	 * Persists a user in the Repo, this user can later be retrieved.
 	 */

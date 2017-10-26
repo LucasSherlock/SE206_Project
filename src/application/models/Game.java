@@ -3,7 +3,6 @@ package application.models;
 import java.io.Serializable;
 import java.util.*;
 
-import application.models.*;
 
 /*
  * This class is used to instantiate Game objects.

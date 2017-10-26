@@ -1,12 +1,14 @@
 package application.controllers;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import application.*;
 import application.DataFile;
+<<<<<<< HEAD
+=======
+import javafx.beans.property.ReadOnlyStringWrapper;
+>>>>>>> bef110dbfa50c2bcedc67348dd318714efe83a77
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,17 +20,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+
 import javafx.stage.Stage;
 
-import application.models.*;
 
-public class HighScoresController implements Initializable{
+public class HighScoresController implements Initializable {
 
 	public ObservableList<String> highScores = FXCollections.observableArrayList();
 	
 	@FXML
 	public ListView<String> highScoreList;
 	public Button back;
+
 
 
 	@Override

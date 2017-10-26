@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 /*
  * This controller is responsible for handling the creation of question lists.
