@@ -78,7 +78,7 @@ public class SelectController implements Initializable {
 		int ans;
 		DataFile.game = new Game();
 		for(int i = 0; i < 10; i++) {
-			ans = new Random().nextInt(99) + 1;
+			ans = new Random().nextInt(98) + 2;
 			arg1 = new Random().nextInt(ans-1) + 1;
 			arg2 = ans - arg1;
 			DataFile.game.add(arg1, arg2);			

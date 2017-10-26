@@ -142,7 +142,7 @@ public class GameCreatorController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		if(!DataFile.editingList) {	
+		if(!DataFile.editingList) {
 			// Instantiate a new game object
 			newGame = new Game();
 
