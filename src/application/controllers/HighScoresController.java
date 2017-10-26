@@ -23,9 +23,9 @@ import javafx.stage.Stage;
 public class HighScoresController implements Initializable {
 
 	@FXML
-	public TableView easyTable;
-	public TableView hardTable;
-	public TableColumn easyColumn;
+	public TableView<String> easyTable;
+	public TableView<String> hardTable;
+	public TableColumn<?, ?> easyColumn;
 
 	public void backToMenu(ActionEvent event) throws Exception{
 
