@@ -49,8 +49,6 @@ public class ListController implements Initializable {
 		
 		QuestionList.setItems(items);
 	}
-	
-	
 
 	
 	public void playGame(ActionEvent ae) {
@@ -70,7 +68,6 @@ public class ListController implements Initializable {
 			}
 		}	
 	}
-	
 	
 	public void move(ActionEvent ae) {
 		try {
@@ -108,7 +105,11 @@ public class ListController implements Initializable {
 		noSelection.showAndWait();
 	}
 	
-
-	
-	
+	/*
+	 * Called when the scene is hidden
+	 */
+	public void shutdown() {
+		// We persist any changes made to the users lists
+		DataFile.user.saveUser();
+	}
 }

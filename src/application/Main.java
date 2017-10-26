@@ -9,6 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
+/*
+ * The application class, this is the first class accessed during execution
+ */
 public class Main extends Application {
 	public Parent root;
 	public static Stage mainStage;
@@ -18,6 +21,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 			mainStage = primaryStage;
 			root = FXMLLoader.load(getClass().getResource("TitleScreen.fxml"));
+			
+			// Sets the Title Screen as the the application scene
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
