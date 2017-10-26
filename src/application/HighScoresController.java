@@ -23,7 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class HighScoreController implements Initializable{
+public class HighScoresController implements Initializable{
 
 	@FXML
 	public TableView easyTable;
@@ -32,7 +32,7 @@ public class HighScoreController implements Initializable{
 
 	public void backToMenu(ActionEvent event) throws Exception{
 
-		Parent pane = FXMLLoader.load( getClass().getResource("SelectScreen.fxml"));
+		Parent pane = FXMLLoader.load( getClass().getResource("Select.fxml"));
 		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

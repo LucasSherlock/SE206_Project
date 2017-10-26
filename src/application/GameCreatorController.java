@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 /*
  * This controller is responsible for handling the creation of question lists.
  */
-public class CreationController implements Initializable {
+public class GameCreatorController implements Initializable {
 	public Game newGame;
 	
 	@FXML
@@ -83,7 +83,7 @@ public class CreationController implements Initializable {
 				DataFile.user.saveUser();
 				
 				// Returns the user back to the list view
-				Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("UserGames.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -98,7 +98,7 @@ public class CreationController implements Initializable {
 	 * This method sets the name for a new list. If the name is valid the list creation process is initiated
 	 */
 	public void setName(ActionEvent ae) {	
-		if(ListController.items.contains(listName.getText())) {
+		if(UserGamesController.items.contains(listName.getText())) {
 			// List with the given name already exists
 			warning.setVisible(true);
 			warning.setText("That name is already in use.");

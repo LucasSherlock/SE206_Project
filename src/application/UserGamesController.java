@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 /*
  * This class is the controller for the list view.
  */
-public class ListController implements Initializable {	
+public class UserGamesController implements Initializable {	
 	public static ArrayList<Game> games;
 	public static ObservableList<String> items = FXCollections.observableArrayList();
 	
@@ -59,7 +59,7 @@ public class ListController implements Initializable {
 			DataFile.practiceMode = false;
 			try {
 				Parent pane;
-				pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -75,7 +75,7 @@ public class ListController implements Initializable {
 			if(ae.getSource() == newList) {
 				pane = FXMLLoader.load(getClass().getResource("GameCreator.fxml"));
 			} else {
-				pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
 			}
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 

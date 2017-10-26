@@ -19,7 +19,7 @@ public class GameList {
 			//if it doesn't already exist
 			
 			games.add(game);
-			ListController.items.add(game.getName()); //add name to observable list
+			UserGamesController.items.add(game.getName()); //add name to observable list
 		}
 	}
 	

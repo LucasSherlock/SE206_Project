@@ -40,13 +40,13 @@ public class PopUpController implements Initializable {
 		
 		if(DataFile.Level < 9) {
 		
-			pane  = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+			pane  = FXMLLoader.load(getClass().getResource("Question.fxml"));
 			
 			
 			
 		}else {
 			
-			pane = FXMLLoader.load(getClass().getResource("ScoreScreen.fxml"));
+			pane = FXMLLoader.load(getClass().getResource("Score.fxml"));
 			
 		}
 		

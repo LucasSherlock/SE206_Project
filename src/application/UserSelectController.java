@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 /*
  * Controller class for user menu
  */
-public class UserController implements Initializable {	
+public class UserSelectController implements Initializable {	
 	public ArrayList<User> users; 
 	public ObservableList<String> usernames = FXCollections.observableArrayList();
 	
@@ -64,7 +64,7 @@ public class UserController implements Initializable {
 				// go to select screen
 				try {
 					Parent pane;
-					pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
+					pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 					stage.setScene(scene);

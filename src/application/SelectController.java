@@ -48,12 +48,12 @@ public class SelectController implements Initializable {
 				title.setText("Select a difficulty.");
 			} else if(ae.getSource() == random) {
 				setRandom();
-				Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
-				Parent pane = FXMLLoader.load(getClass().getResource("InitialScreen.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("UserGames.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -97,7 +97,7 @@ public class SelectController implements Initializable {
 			DataFile.difficulty = "HARD";
 		}
 
-		Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
 		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);

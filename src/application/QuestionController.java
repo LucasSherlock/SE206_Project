@@ -28,7 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class GameController implements Initializable {
+public class QuestionController implements Initializable {
 	@FXML
 	public Button RecordButton;
 	public Button SkipButton;
@@ -61,11 +61,11 @@ public class GameController implements Initializable {
 			
 				DataFile.trial = 1;
 				DataFile.Level++;
-				pane  = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+				pane  = FXMLLoader.load(getClass().getResource("Question.fxml"));
 			
 			}else {
 				
-				pane  = FXMLLoader.load(getClass().getResource("ScoreScreen.fxml"));
+				pane  = FXMLLoader.load(getClass().getResource("Score.fxml"));
 				
 			}
 			

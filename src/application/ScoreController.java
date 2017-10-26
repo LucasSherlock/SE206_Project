@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ScoreScreenController implements Initializable {
+public class ScoreController implements Initializable {
 	
 	@FXML
 	public Label Mode;
@@ -34,7 +34,7 @@ public class ScoreScreenController implements Initializable {
 			
 			
 			
-			Parent pane = FXMLLoader.load(getClass().getResource("SelectScreen.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
@@ -52,7 +52,7 @@ public class ScoreScreenController implements Initializable {
 
 
 			}	
-			Parent pane = FXMLLoader.load(getClass().getResource("QuestionScreen.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
