@@ -24,6 +24,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import application.models.*;
+
 /*
  * This class is the controller for the list view.
  */

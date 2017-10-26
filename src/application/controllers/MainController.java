@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.stage.Stage;
 
+import application.models.*;
+
 public class MainController {
 
 	@FXML

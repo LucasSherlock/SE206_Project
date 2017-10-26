@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import application.models.*;
+
 public class PopUpController implements Initializable {
 
 	@FXML

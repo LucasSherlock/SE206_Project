@@ -24,6 +24,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import application.models.*;
+
 public class HighScoresController implements Initializable{
 
 	@FXML

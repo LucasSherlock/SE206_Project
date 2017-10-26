@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import application.models.*;
+
 public class Repo implements Serializable {
 	private String _outputDirectory;
 	private static final String rootDirectory = System.getProperty("user.home") + File.separator + "titai";

@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import application.models.*;
+
 public class ScoreController implements Initializable {
 	
 	@FXML

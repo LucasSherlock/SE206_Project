@@ -29,6 +29,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import application.models.*;
 
 public class QuestionController implements Initializable {
 	@FXML

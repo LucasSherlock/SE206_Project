@@ -3,6 +3,8 @@ package application.models;
 import java.io.Serializable;
 import java.util.*;
 
+import application.models.*;
+
 /*
  * Class to instantiate User objects, users have unique lists of games
  */
