@@ -2,13 +2,11 @@ package application.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
 
 import application.*;
 import application.DataFile;
-<<<<<<< HEAD
-=======
-import javafx.beans.property.ReadOnlyStringWrapper;
->>>>>>> bef110dbfa50c2bcedc67348dd318714efe83a77
+import application.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
