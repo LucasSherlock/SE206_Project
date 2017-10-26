@@ -19,7 +19,7 @@
          <children>
             <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#move" prefWidth="5000.0" text="Edit Question" visible="false" />
             <Button fx:id="play" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#playGame" prefHeight="189.0" prefWidth="5000.0" style="-fx-background-radius: 0;" text="Play" />
-            <Button mnemonicParsing="false" onAction="#move" prefWidth="5000.0" text="Back" />
+            <Button fx:id="back" mnemonicParsing="false" onAction="#move" prefWidth="5000.0" text="Back" />
          </children>
       </HBox>
    </children>

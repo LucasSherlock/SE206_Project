@@ -56,8 +56,7 @@ public class GameCreatorController implements Initializable {
 				// Integer is not in range 1-99
 				warning.setVisible(true);
 				warning.setText("Answer out of range.");
-			}
-			else {				
+			} else {				
 				if(!DataFile.editingList) {
 					// Pushes the question onto the questions list
 					newGame.add(Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
@@ -65,9 +64,10 @@ public class GameCreatorController implements Initializable {
 					// Increments the counter/10
 					qNum.setText("Question: "+(newGame.size()+1)+"/10");
 				} else {
-					//if editing replace question at editIndex
+					//if editing replace question at editIndex then go back to question List
 					DataFile.game.replace(DataFile.editIndex, 
 							Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
+					done(ae);
 				}
 				
 				
@@ -85,26 +85,26 @@ public class GameCreatorController implements Initializable {
 			warning.setText("Please enter numbers.");
 		}
 		
-		// Exits the creation view if the required number of questions have been added or user was editing
-		if(DataFile.editingList || newGame.size() == finalListLength) {
-			try {
-				if(!DataFile.editingList) {
-					// Updates the current users game list
-					DataFile.user.addGame(newGame);
-				}
-				
-				// Saves the user object to disk to prevent data loss
-				DataFile.user.saveUser();
-				
-				// Returns the user back to the list view
-				Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
-				Scene scene = new Scene(pane);
-				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
-				stage.setScene(scene);
-			}
-			catch(IOException e) {
-				e.printStackTrace();
-			}
+		// Exits the creation view if the required number of questions have been added
+		if(!DataFile.editingList && newGame.size() == finalListLength) {
+			// Updates the current users game list
+			DataFile.user.addGame(newGame);
+			done(ae);
+		}
+	}
+	
+	public void done(ActionEvent ae) {
+		try {
+			// Saves the user object to disk to prevent data loss
+			DataFile.user.saveUser();
+			
+			// Returns the user back to the list view
+			Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
+			Scene scene = new Scene(pane);
+			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+			stage.setScene(scene);
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
