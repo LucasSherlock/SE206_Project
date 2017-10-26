@@ -32,6 +32,8 @@ public class Game implements Serializable {
 		return this.name;
 	}
 	
+	
+	
 	/*
 	 * Sets the name of the game
 	 */

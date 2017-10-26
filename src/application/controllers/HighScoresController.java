@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import application.*;
 import application.DataFile;
-import javafx.beans.binding.StringExpression;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,72 +16,46 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import application.models.*;
 
 public class HighScoresController implements Initializable{
 
+	public ObservableList<String> highScores = FXCollections.observableArrayList();
+	
 	@FXML
-	public TableView easyTable;
-	public TableView hardTable;
-	public TableColumn easyColumn;
+	public ListView<String> highScoreList;
+	public Button back;
 
-	public void backToMenu(ActionEvent event) throws Exception{
-
-		Parent pane = FXMLLoader.load( getClass().getResource("../Select.fxml"));
-		Scene scene = new Scene( pane);
-
-		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-		stage.setScene(scene);
-
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		setEasyScores();
-		setHardScores();
-
-	}
-	private void setEasyScores(){
-
-		final ObservableList<String> data = FXCollections.observableArrayList(DataFile.easyScores);
-		easyTable.setPlaceholder(new Label("No Scores"));
-		easyTable.setEditable(true);
-		easyTable.setItems(data);
-		TableColumn<String, String> tc = new TableColumn<>("Scores - Easy ");
-		tc.setPrefWidth(120);
-		tc.setCellValueFactory((p) -> {
-			return new ReadOnlyStringWrapper(p.getValue());
-		});
-		easyTable.getColumns().add(tc);
-
+		populateList();
+		highScoreList.setItems(highScores);
 
 	}
-	private void setHardScores(){
-
+	
+	public void populateList() {
+		ArrayList<Game> games = DataFile.user.getGames();
 		
-		final ObservableList<String> data = FXCollections.observableArrayList(DataFile.hardScores);
-		hardTable.setPlaceholder(new Label("No Scores"));
-		hardTable.setEditable(true);
-		hardTable.setItems(data);
-		TableColumn<String, String> tc = new TableColumn<>("Scores - Hard ");
+		for(Game game : games) {
+			highScores.add("Game: " + game.getName() + "\t\t\tHigh Score: " + game.getHighScore());
+		}
 		
-		tc.setPrefWidth(120);
-		tc.setCellValueFactory((p) -> {
-			return new ReadOnlyStringWrapper(p.getValue());
-		});
-		hardTable.getColumns().add(tc);
-
+		
 	}
 
 
+	
+	public void backToMenu(ActionEvent event) throws Exception{
+		Parent pane = FXMLLoader.load( getClass().getResource("../Select.fxml"));
+		Scene scene = new Scene( pane);
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+	}
 }
 
 
