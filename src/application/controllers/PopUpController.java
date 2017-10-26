@@ -45,11 +45,15 @@ public class PopUpController implements Initializable {
 		
 			pane  = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
 			
-			
+			// Loads the stylesheet
+			pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
 			
 		}else {
 			
 			pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Score.fxml"));
+			
+			// Loads the stylesheet
+			pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
 			
 		}
 		

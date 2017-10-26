@@ -67,6 +67,10 @@ public class UserGamesController implements Initializable {
 			try {
 				Parent pane;
 				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -81,6 +85,10 @@ public class UserGamesController implements Initializable {
 			Parent pane;
 			if(ae.getSource() == newList) {
 				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/GameCreator.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -95,11 +103,19 @@ public class UserGamesController implements Initializable {
 			} else if(ae.getSource() == editQuestion) {
 				DataFile.editIndex = QuestionList.getSelectionModel().getSelectedIndex();
 				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/GameCreator.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
 				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Select.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);

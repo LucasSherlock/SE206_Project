@@ -52,6 +52,10 @@ public class SelectController implements Initializable {
 			} else if(ae.getSource() == random) {
 				setRandom();
 				Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -107,6 +111,10 @@ public class SelectController implements Initializable {
 		}
 
 		Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
+		
+		// Loads the stylesheet
+		pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+		
 		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
@@ -120,6 +128,10 @@ public class SelectController implements Initializable {
 	public void viewHighScore(ActionEvent event) throws Exception{
 		
 		Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/HighScores.fxml"));
+		
+		// Loads the stylesheet
+		pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+		
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -142,6 +154,10 @@ public class SelectController implements Initializable {
 		if(gameType.isVisible()) {
 			try {
 				Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/UserSelect.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
 				

@@ -20,7 +20,8 @@ public class Main extends Application {
 			mainStage = primaryStage;
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/Title.fxml"));
 			
-			root.getStylesheets().add(getClass().getResource("application.css").toString());
+			// Loads the stylesheet
+			root.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
 			
 			// Sets the Title Screen as the the application scene
 			Scene scene = new Scene(root);

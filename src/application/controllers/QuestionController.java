@@ -62,10 +62,16 @@ public class QuestionController implements Initializable {
 				DataFile.trial = 1;
 				DataFile.Level++;
 				pane  = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
 			
 			}else {
 				
 				pane  = FXMLLoader.load(getClass().getClassLoader().getResource("application/Score.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
 				
 			}
 			
@@ -206,6 +212,10 @@ public class QuestionController implements Initializable {
 
 		Stage stage = new Stage();
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("application/PopUp.fxml"));
+		
+		// Loads the stylesheet
+		root.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+		
 		stage.setScene(new Scene(root));
 		stage.setTitle("");
 		stage.initModality(Modality.APPLICATION_MODAL);

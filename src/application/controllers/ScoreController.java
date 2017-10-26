@@ -37,6 +37,10 @@ public class ScoreController implements Initializable {
 			
 			
 			Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Select.fxml"));
+			
+			// Loads the stylesheet
+			pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+			
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
@@ -55,6 +59,10 @@ public class ScoreController implements Initializable {
 
 			}	
 			Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
+			
+			// Loads the stylesheet
+			pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+			
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);

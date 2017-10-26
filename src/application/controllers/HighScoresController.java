@@ -53,6 +53,10 @@ public class HighScoresController implements Initializable {
 	
 	public void backToMenu(ActionEvent event) throws Exception{
 		Parent pane = FXMLLoader.load( getClass().getClassLoader().getResource("application/Select.fxml"));
+		
+		// Loads the stylesheet
+		pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+		
 		Scene scene = new Scene( pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
 		stage.setScene(scene);

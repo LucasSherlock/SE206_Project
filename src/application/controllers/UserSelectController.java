@@ -137,6 +137,10 @@ public class UserSelectController implements Initializable {
 			// go to select screen
 			try {
 				Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Select.fxml"));
+				
+				// Loads the stylesheet
+				pane.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+				
 				Scene scene = new Scene(pane);			
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				
