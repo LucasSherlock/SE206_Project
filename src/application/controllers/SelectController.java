@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 public class SelectController implements Initializable {
 

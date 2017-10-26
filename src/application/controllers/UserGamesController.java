@@ -1,10 +1,8 @@
 package application.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import application.DataFile;
@@ -24,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 /*
  * This class is the controller for the list view.

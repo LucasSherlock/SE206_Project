@@ -24,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 /*
  * Controller class for user menu

@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 import application.DataFile;
 import application.Main;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -29,7 +28,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import application.models.*;
 
 public class QuestionController implements Initializable {
 	@FXML
