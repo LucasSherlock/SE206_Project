@@ -143,7 +143,12 @@ public class SelectController implements Initializable {
 			try {
 				Parent pane = FXMLLoader.load(getClass().getResource("../UserSelect.fxml"));
 				Scene scene = new Scene(pane);
-				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
+				
+				stage.setHeight(400);
+				stage.setWidth(300);
+				stage.setTitle("Select a user");
+				
 				stage.setScene(scene);
 			} catch(Exception e) {
 				e.printStackTrace();
