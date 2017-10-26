@@ -26,7 +26,7 @@ public class MainController {
 	 * Transitions to the user select view
 	 */
 	public void start(ActionEvent event) throws Exception {
-		Parent pane = FXMLLoader.load(getClass().getResource("../UserSelect.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/UserSelect.fxml"));
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

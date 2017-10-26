@@ -18,7 +18,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 			mainStage = primaryStage;
-			root = FXMLLoader.load(getClass().getResource("Title.fxml"));
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/Title.fxml"));
+			
+			root.getStylesheets().add(getClass().getResource("application.css").toString());
 			
 			// Sets the Title Screen as the the application scene
 			Scene scene = new Scene(root);

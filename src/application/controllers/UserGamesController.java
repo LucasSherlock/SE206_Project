@@ -66,7 +66,7 @@ public class UserGamesController implements Initializable {
 			DataFile.practiceMode = false;
 			try {
 				Parent pane;
-				pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
+				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -80,7 +80,7 @@ public class UserGamesController implements Initializable {
 		try {
 			Parent pane;
 			if(ae.getSource() == newList) {
-				pane = FXMLLoader.load(getClass().getResource("../GameCreator.fxml"));
+				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/GameCreator.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -94,12 +94,12 @@ public class UserGamesController implements Initializable {
 				play.setDisable(false);
 			} else if(ae.getSource() == editQuestion) {
 				DataFile.editIndex = QuestionList.getSelectionModel().getSelectedIndex();
-				pane = FXMLLoader.load(getClass().getResource("../GameCreator.fxml"));
+				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/GameCreator.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
-				pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
+				pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Select.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);

@@ -51,14 +51,14 @@ public class SelectController implements Initializable {
 				title.setText("Select a difficulty.");
 			} else if(ae.getSource() == random) {
 				setRandom();
-				Parent pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("../UserGames.fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("application/UserGames.fxml"));
 				Parent pane = loader.load();
 				Scene scene = new Scene(pane);
 				stage.setScene(scene);
@@ -106,7 +106,7 @@ public class SelectController implements Initializable {
 			DataFile.difficulty = "HARD";
 		}
 
-		Parent pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/Question.fxml"));
 		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
@@ -119,7 +119,7 @@ public class SelectController implements Initializable {
 	 */
 	public void viewHighScore(ActionEvent event) throws Exception{
 		
-		Parent pane = FXMLLoader.load(getClass().getResource("../HighScores.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/HighScores.fxml"));
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -141,7 +141,7 @@ public class SelectController implements Initializable {
 	public void back(ActionEvent ae) {
 		if(gameType.isVisible()) {
 			try {
-				Parent pane = FXMLLoader.load(getClass().getResource("../UserSelect.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/UserSelect.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow();
 				

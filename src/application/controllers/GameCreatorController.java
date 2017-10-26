@@ -99,7 +99,7 @@ public class GameCreatorController implements Initializable {
 			DataFile.user.saveUser();
 			
 			// Returns the user back to the list view
-			Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getClassLoader().getResource("application/UserGames.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
