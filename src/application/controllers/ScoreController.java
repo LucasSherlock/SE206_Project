@@ -1,9 +1,10 @@
-package application;
+package application.controllers;
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import application.DataFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,7 @@ public class ScoreController implements Initializable {
 			
 			
 			
-			Parent pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);
@@ -52,7 +53,7 @@ public class ScoreController implements Initializable {
 
 
 			}	
-			Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
+			Parent pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 			stage.setScene(scene);

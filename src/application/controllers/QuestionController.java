@@ -1,4 +1,4 @@
-package application;
+package application.controllers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Main;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -61,11 +63,11 @@ public class QuestionController implements Initializable {
 			
 				DataFile.trial = 1;
 				DataFile.Level++;
-				pane  = FXMLLoader.load(getClass().getResource("Question.fxml"));
+				pane  = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 			
 			}else {
 				
-				pane  = FXMLLoader.load(getClass().getResource("Score.fxml"));
+				pane  = FXMLLoader.load(getClass().getResource("../Score.fxml"));
 				
 			}
 			
@@ -206,7 +208,7 @@ public class QuestionController implements Initializable {
 
 
 		Stage stage = new Stage();
-		Parent root = FXMLLoader.load(getClass().getResource("PopUp.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../PopUp.fxml"));
 		stage.setScene(new Scene(root));
 		stage.setTitle("");
 		stage.initModality(Modality.APPLICATION_MODAL);

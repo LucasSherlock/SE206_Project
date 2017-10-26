@@ -1,9 +1,12 @@
-package application;
+package application.controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Store;
+import application.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,7 +67,7 @@ public class UserSelectController implements Initializable {
 				// go to select screen
 				try {
 					Parent pane;
-					pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
+					pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 					stage.setScene(scene);

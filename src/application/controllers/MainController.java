@@ -1,4 +1,4 @@
-package application;
+package application.controllers;
 
 
 import java.io.BufferedReader;
@@ -37,7 +37,7 @@ public class MainController {
 	 * Transitions to the user select view
 	 */
 	public void start(ActionEvent event) throws Exception {
-		Parent pane = FXMLLoader.load(getClass().getResource("UserSelect.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getResource("../UserSelect.fxml"));
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

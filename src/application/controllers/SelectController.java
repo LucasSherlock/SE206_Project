@@ -1,9 +1,11 @@
-package application;
+package application.controllers;
 
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,12 +50,12 @@ public class SelectController implements Initializable {
 				title.setText("Select a difficulty.");
 			} else if(ae.getSource() == random) {
 				setRandom();
-				Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
 			} else {
-				Parent pane = FXMLLoader.load(getClass().getResource("UserGames.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -97,7 +99,7 @@ public class SelectController implements Initializable {
 			DataFile.difficulty = "HARD";
 		}
 
-		Parent pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow(); 
 		stage.setScene(scene);
@@ -110,7 +112,7 @@ public class SelectController implements Initializable {
 	 */
 	public void viewHighScore(ActionEvent event) throws Exception{
 		
-		Parent pane = FXMLLoader.load(getClass().getResource("HighScores.fxml"));
+		Parent pane = FXMLLoader.load(getClass().getResource("../HighScores.fxml"));
 		Scene scene = new Scene(pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -132,7 +134,7 @@ public class SelectController implements Initializable {
 	public void back(ActionEvent ae) {
 		if(gameType.isVisible()) {
 			try {
-				Parent pane = FXMLLoader.load(getClass().getResource("UserSelect.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("../UserSelect.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);

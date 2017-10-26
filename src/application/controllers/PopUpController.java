@@ -1,8 +1,10 @@
-package application;
+package application.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,13 +42,13 @@ public class PopUpController implements Initializable {
 		
 		if(DataFile.Level < 9) {
 		
-			pane  = FXMLLoader.load(getClass().getResource("Question.fxml"));
+			pane  = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 			
 			
 			
 		}else {
 			
-			pane = FXMLLoader.load(getClass().getResource("Score.fxml"));
+			pane = FXMLLoader.load(getClass().getResource("../Score.fxml"));
 			
 		}
 		

@@ -1,10 +1,11 @@
-package application;
+package application.controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import application.DataFile;
 import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,7 +33,7 @@ public class HighScoresController implements Initializable{
 
 	public void backToMenu(ActionEvent event) throws Exception{
 
-		Parent pane = FXMLLoader.load( getClass().getResource("Select.fxml"));
+		Parent pane = FXMLLoader.load( getClass().getResource("../Select.fxml"));
 		Scene scene = new Scene( pane);
 
 		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

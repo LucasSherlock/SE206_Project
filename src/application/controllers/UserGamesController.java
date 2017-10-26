@@ -1,4 +1,4 @@
-package application;
+package application.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +61,7 @@ public class UserGamesController implements Initializable {
 			DataFile.practiceMode = false;
 			try {
 				Parent pane;
-				pane = FXMLLoader.load(getClass().getResource("Question.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("../Question.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
@@ -73,9 +75,9 @@ public class UserGamesController implements Initializable {
 		try {
 			Parent pane;
 			if(ae.getSource() == newList) {
-				pane = FXMLLoader.load(getClass().getResource("GameCreator.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("../GameCreator.fxml"));
 			} else {
-				pane = FXMLLoader.load(getClass().getResource("Select.fxml"));
+				pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
 			}
 			Scene scene = new Scene(pane);
 			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 

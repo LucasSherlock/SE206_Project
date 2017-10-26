@@ -2,6 +2,8 @@ package application;
 
 import java.util.*;
 
+import application.controllers.UserGamesController;
+
 
 /*
  * Object containing a list of games, belongs to a User

@@ -1,9 +1,11 @@
-package application;
+package application.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.DataFile;
+import application.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,7 +85,7 @@ public class GameCreatorController implements Initializable {
 				DataFile.user.saveUser();
 				
 				// Returns the user back to the list view
-				Parent pane = FXMLLoader.load(getClass().getResource("UserGames.fxml"));
+				Parent pane = FXMLLoader.load(getClass().getResource("../UserGames.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
 				stage.setScene(scene);
