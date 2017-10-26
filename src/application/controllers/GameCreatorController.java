@@ -58,15 +58,24 @@ public class GameCreatorController implements Initializable {
 				warning.setText("Answer out of range.");
 			}
 			else {				
-				// Pushes the question onto the questions list
-				newGame.add(Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
+				if(!DataFile.editingList) {
+					// Pushes the question onto the questions list
+					newGame.add(Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
+					
+					// Increments the counter/10
+					qNum.setText("Question: "+(newGame.size()+1)+"/10");
+				} else {
+					//if editing replace question at editIndex
+					DataFile.game.replace(DataFile.editIndex, 
+							Integer.parseInt(lhsNumber.getText()), Integer.parseInt(rhsNumber.getText()));
+				}
+				
 				
 				// Input validations are successful
 				lhsNumber.clear();
 				rhsNumber.clear();
 				
-				// Increments the counter/10
-				qNum.setText("Question: "+(newGame.size()+1)+"/10");
+				
 			}
 		}
 		catch(NumberFormatException e) {
@@ -76,11 +85,13 @@ public class GameCreatorController implements Initializable {
 			warning.setText("Please enter numbers.");
 		}
 		
-		// Exits the creation view if the required number of questions have been added
-		if(newGame.size() == finalListLength) {
+		// Exits the creation view if the required number of questions have been added or user was editing
+		if(DataFile.editingList || newGame.size() == finalListLength) {
 			try {
-				// Updates the current users game list
-				DataFile.user.addGame(newGame);
+				if(!DataFile.editingList) {
+					// Updates the current users game list
+					DataFile.user.addGame(newGame);
+				}
 				
 				// Saves the user object to disk to prevent data loss
 				DataFile.user.saveUser();
@@ -130,14 +141,34 @@ public class GameCreatorController implements Initializable {
 		
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Instantiate a new game object
-		newGame = new Game();
 		
-		// Show the relevant elements
-		title.setText("Enter a name for this list:");
-		submitQuestion.setVisible(false);
+		if(!DataFile.editingList) {	
+			// Instantiate a new game object
+			newGame = new Game();
+
+			// Show the relevant elements
+			title.setText("Enter a name for this list:");
+			submitQuestion.setVisible(false);
+			
+			// Submit button can be activated with enter key
+			submitListName.setDefaultButton(true);
+		} else {
+			// Show and hide the relevant elements
+			warning.setVisible(false);
+			listName.setVisible(false);
+			submitQuestion.setVisible(true);
+			submitListName.setVisible(false);
+			lhsNumber.setVisible(true);
+			rhsNumber.setVisible(true);
+			plus.setVisible(true);
+			qNum.setVisible(true);
+
+			title.setText("Enter numbers which add to between 1 and 99:");
+			qNum.setText("Question: "+(DataFile.editIndex+1)+"/10");
+
+			// Submit button can be activated with enter key
+			submitQuestion.setDefaultButton(true);
+		}
 		
-		// Submit button can be activated with enter key
-		submitListName.setDefaultButton(true);
 	}
 }

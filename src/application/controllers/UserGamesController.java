@@ -24,16 +24,19 @@ import javafx.stage.Stage;
 
 
 /*
- * This class is the controller for the list view.
+ * This class is the controller for the UserGames view.
  */
 public class UserGamesController implements Initializable {	
 	public static ArrayList<Game> games;
 	public static ObservableList<String> items = FXCollections.observableArrayList();
+	public static ObservableList<String> questions = FXCollections.observableArrayList();
 	
 	@FXML
 	public Button play;
 	public Button delete;
+	public Button edit;
 	public Button newList;
+	public Button editQuestion;
 	public Button back;
 	public ListView<String> QuestionList = new ListView<String>();
 
@@ -47,8 +50,11 @@ public class UserGamesController implements Initializable {
 		for (Game game: games) {
 			items.add(game.getName());
 		}
-		
-		QuestionList.setItems(items);
+		if(!DataFile.editingList) {
+			QuestionList.setItems(items);
+		} else {
+			questionList();
+		}
 	}
 
 	
@@ -75,12 +81,30 @@ public class UserGamesController implements Initializable {
 			Parent pane;
 			if(ae.getSource() == newList) {
 				pane = FXMLLoader.load(getClass().getResource("../GameCreator.fxml"));
+				Scene scene = new Scene(pane);
+				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+				stage.setScene(scene);
+			} else if(editQuestion.isVisible() && ae.getSource() == back) {
+				DataFile.editingList = false;
+				editQuestion.setVisible(false);
+				QuestionList.setItems(items);
+				newList.setDisable(false);
+				delete.setDisable(false);
+				edit.setDisable(false);
+				play.setDisable(false);
+			} else if(ae.getSource() == editQuestion) {
+				DataFile.editIndex = QuestionList.getSelectionModel().getSelectedIndex();
+				pane = FXMLLoader.load(getClass().getResource("../GameCreator.fxml"));
+				Scene scene = new Scene(pane);
+				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+				stage.setScene(scene);
 			} else {
 				pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
+				Scene scene = new Scene(pane);
+				Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+				stage.setScene(scene);
 			}
-			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
-			stage.setScene(scene);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -99,10 +123,44 @@ public class UserGamesController implements Initializable {
 		}
 	}
 	
+	/*
+	 * show list of questions for selected game
+	 */
+	public void questionList() {
+		//empty question list
+		questions.clear();
+		
+		//fill the question list with the questions from the selected game
+		for(String question : DataFile.game.getQuestions()) {
+			questions.add(question);
+		}
+		
+		//change scene to appropriate functionality
+		QuestionList.setItems(questions);
+		editQuestion.setVisible(true);
+		newList.setDisable(true);
+		delete.setDisable(true);
+		edit.setDisable(true);
+		play.setDisable(true);
+	}
+	
+	public void editList(ActionEvent ae) {
+		if(QuestionList.getSelectionModel().isEmpty()) {
+			errorPopup();
+		} else {
+			//now editing a list
+			DataFile.editingList = true;
+			//select the game being edited
+			DataFile.game = DataFile.user.findGame(QuestionList.getSelectionModel().getSelectedItem());
+			
+			questionList();
+		}
+	}
+	
 	public void errorPopup() {
 		Alert noSelection = new Alert(AlertType.ERROR);
 		noSelection.setTitle("No Selection");
-		noSelection.setContentText("Please select a list.");
+		noSelection.setContentText("Please select an item.");
 		noSelection.showAndWait();
 	}
 	

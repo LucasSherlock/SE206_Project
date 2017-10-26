@@ -10,8 +10,10 @@ import application.models.User;
  */
 public class DataFile {
 	
-	public static boolean practiceMode = false; //is the user practicing
+	public static boolean practiceMode = false; //is the user practicing	
 	
+	public static boolean editingList = false; //are you editing a list
+	public static int editIndex = -1; //the question being edited
 	
 	//track progress in current game or practice
 	public static int score = 0;
@@ -24,10 +26,9 @@ public class DataFile {
 	public static int[] practiceGame  = {1,9,2,5,5,6,6,7,8,9};
 	public static ArrayList<String> hardScores = new ArrayList<String>();
 	public static ArrayList<String> easyScores = new ArrayList<String>();
-	
+
 	
 	public static Game game; //currently selected game
-	
 	public static User user; //currently selected user
 
 }

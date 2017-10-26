@@ -49,10 +49,28 @@ public class Game implements Serializable {
 	}
 	
 	/*
+	 * replaces one of the questions in the game
+	 */
+	public void replace(int index, int a, int b) {
+		questions.remove(index);
+		answers.remove(index);
+		questions.add(index, a+" + "+b);
+		answers.add(index, a+b);
+		
+	}
+	
+	/*
 	 * Returns the number of questions
 	 */
 	public int size() {
 		return questions.size();
+	}
+	
+	/*
+	 * Returns the list of questions
+	 */
+	public ArrayList<String> getQuestions() {
+		return questions;
 	}
 	
 	/*
