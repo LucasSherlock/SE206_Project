@@ -106,6 +106,10 @@ public class UserSelectController implements Initializable {
 			// Name already exists
 			errorPopup("Name exists, enter new name.");
 			input.clear();
+		} else if(input.getText().equals("")) {
+			// No input entered
+			errorPopup("Please enter a name.");
+			input.clear();
 		} else {
 			User newUser = User.getUser(input.getText());
 
