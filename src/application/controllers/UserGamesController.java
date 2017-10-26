@@ -86,7 +86,7 @@ public class UserGamesController implements Initializable {
 				stage.setScene(scene);
 			} else if(editQuestion.isVisible() && ae.getSource() == back) {
 				DataFile.editingList = false;
-				editQuestion.setVisible(false);
+				editQuestion.setDisable(true);
 				QuestionList.setItems(items);
 				newList.setDisable(false);
 				delete.setDisable(false);
@@ -137,7 +137,7 @@ public class UserGamesController implements Initializable {
 		
 		//change scene to appropriate functionality
 		QuestionList.setItems(questions);
-		editQuestion.setVisible(true);
+		editQuestion.setDisable(false);
 		newList.setDisable(true);
 		delete.setDisable(true);
 		edit.setDisable(true);
