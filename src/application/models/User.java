@@ -94,7 +94,6 @@ public class User implements Serializable {
 			_gamesList.remove(game);
 		}
 	}
-	
 	public void deleteGame(Game game) {
 		_gamesList.remove(game);
 	}

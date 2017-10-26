@@ -43,15 +43,16 @@ public class UserSelectController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
-		LocalRepo store = new LocalRepo();
-		users = store.getAllUsers();
+		LocalRepo repo = new LocalRepo();
+		users = repo.getAllUsers();
 		
-		//take list of users and add names to observable list so they are displayed in the GUI
+		// Take list of users and add names to observable list so they are displayed in the GUI
 		for(User user : users) {
 			usernames.add(user.getUsername());
 		}
 		
-		userList.setItems(usernames); //make list display the users
+		// Adds the list of names to the list component
+		userList.setItems(usernames);
 	}
 	
 	/*
@@ -69,18 +70,18 @@ public class UserSelectController implements Initializable {
 	
 	
 	/*
-	 * called when create user button is pressed
+	 * Called when the create user button is activated
 	 */
 	public void createUser() {
-		//hide user list and show text field to input name
 		userList.setVisible(false);
-		instructions.setVisible(true);
+		instructions.setVisible(true);	
 		input.setVisible(true);
+		
 		confirm.setText("Confirm Name");	
 	}
 	
 	/*
-	 * Deletes the user
+	 * Called when the delete user button is activated
 	 */
 	public void deleteUser() {
 		User user;
@@ -99,24 +100,23 @@ public class UserSelectController implements Initializable {
 	}
 	
 	/*
-	 * called when confirm button is pressed.
+	 * Called when the confirm user button is activated. Navigates to the play options menu.
 	 */
 	public void select(ActionEvent ae) {
 		if(userList.isVisible()) {
-			// when selecting user
 			if(userList.getSelectionModel().isEmpty()) {
-				// nothing is selected
+				// No user is selected
 				errorPopup("Select a user.");
 			} else {
-				// set current user to selected user
-				DataFile.user = findUser(userList.getSelectionModel().getSelectedItem());
+				// Set current user to selected user
+				DataFile.user = getSelectedUser();
 		
 				// go to select screen
 				try {
-					Parent pane;
-					pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
+					Parent pane = FXMLLoader.load(getClass().getResource("../Select.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+					
 					stage.setScene(scene);
 				} catch(Exception e) {
 					e.printStackTrace();

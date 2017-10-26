@@ -1,1 +1,18 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.menu-button {
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+	-fx-padding: 5px;
+	-fx-max-width: Infinity;
+	-fx-pref-height: 35px;
+	-fx-max-height: 40px;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	-fx-border-color: grey;
+	-fx-border-insets: -1px;
+}
+
+.menu-button:hover {
+	-fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 1, 1);
+}

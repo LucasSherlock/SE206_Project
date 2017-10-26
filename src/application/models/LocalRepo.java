@@ -47,7 +47,7 @@ public class LocalRepo implements Repo {
 			objectOutput.close();
 	        fileOutput.close();
 	        
-	        System.out.println("Serialised object saved to " + outputFile);
+	        System.out.println("Serialised user saved to " + outputFile);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class LocalRepo implements Repo {
 	        objectInput.close();
 	        fileInput.close();
 	        
-	        System.out.println("Serialised object read from " + userPath);
+	        System.out.println("Serialised user read from " + userPath);
 	        
 	        return user;
 		}
