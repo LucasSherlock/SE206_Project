@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 /*
  * Controller class for user menu
  */
-public class UserController implements Initializable {	
+public class UserSelectController implements Initializable {	
 	public ArrayList<User> users; 
 	public ObservableList<String> usernames = FXCollections.observableArrayList();
 	
