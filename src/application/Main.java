@@ -18,10 +18,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 			mainStage = primaryStage;
-			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/Title.fxml"));
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/UserSelect.fxml"));
 			
 			// Loads the stylesheet
 			root.getStylesheets().add(getClass().getClassLoader().getResource("application/application.css").toString());
+			
+			mainStage.setHeight(400);
+			mainStage.setWidth(300);
+			mainStage.setTitle("Select a user");
 			
 			// Sets the Title Screen as the the application scene
 			Scene scene = new Scene(root);

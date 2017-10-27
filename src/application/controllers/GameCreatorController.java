@@ -147,15 +147,15 @@ public class GameCreatorController implements Initializable {
 	}
 		
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
+	public void initialize(URL location, ResourceBundle resources) {	
 		if(!DataFile.editingList) {
 			// Instantiate a new game object
 			newGame = new Game();
 
 			// Show the relevant elements
 			title.setText("Enter a name for this list:");
-			submitQuestion.setVisible(false);
+			
+			submitListName.setVisible(true);
 			
 			// Submit button can be activated with enter key
 			submitListName.setDefaultButton(true);
