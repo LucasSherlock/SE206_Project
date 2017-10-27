@@ -92,5 +92,10 @@
          </children>
       </VBox>
       <Button fx:id="back" alignment="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="80.0" text="Back" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button fx:id="helpButton" mnemonicParsing="false" onAction="#getHelp" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 200;" text="i" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

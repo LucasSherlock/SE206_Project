@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ public class SelectController implements Initializable {
 	@FXML
 	public Button custom;
 	public Button random;
+	public Button helpButton;
 	public Button practice;
 	public Button highscores;
 	public Button hard;
@@ -33,6 +35,23 @@ public class SelectController implements Initializable {
 	public VBox difficulty;
 	public Label title;
 	
+	
+	/*
+	 * Displays the help page
+	 */
+	public void getHelp(ActionEvent ae) {
+		try {
+			Stage stage = (Stage) ((Node)ae.getSource()).getScene().getWindow(); 
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("application/Help.fxml"));
+			Parent pane = loader.load();
+			Scene scene = new Scene(pane);
+			stage.setScene(scene);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/*
 	 * actions when custom, random or practice button is pressed
