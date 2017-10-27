@@ -93,7 +93,7 @@ public class QuestionController implements Initializable {
 		ArrayList<String> RecognisedWords = new ArrayList<String>();
 		ProcessBuilder testHtk = new ProcessBuilder("bash","-c","./"+ "GoSpeech");
 
-		testHtk.directory(new File("MaoriNumbers"));
+		testHtk.directory(new File(System.getProperty("user.home")+"/Documents/HTK/MaoriNumbers"));
 
 		Process process = testHtk.start();
 
@@ -337,16 +337,16 @@ public class QuestionController implements Initializable {
 		@Override
 		protected Void call() throws Exception {
 			if(_playRecording){
-				ProcessBuilder player = new ProcessBuilder("bash","-c","aplay foo.wav");
-				player.directory(new File("MaoriNumbers"));
+				ProcessBuilder player = new ProcessBuilder("bash","-c"," aplay foo.wav");
+				player.directory(new File(System.getProperty("user.home")+"/Documents/HTK/MaoriNumbers"));
 				Process playIt = player.start();
 				playIt.waitFor();
 				
 				
 			}
 			
-			ProcessBuilder deleteWav = new ProcessBuilder("bash"," -c"," rm foo.wav");
-			deleteWav.directory(new File("MaoriNumbers"));
+			ProcessBuilder deleteWav = new ProcessBuilder("bash","-c"," rm foo.wav");
+			deleteWav.directory(new File(System.getProperty("user.home")+"/Documents/HTK/MaoriNumbers"));
 			Process deleteIt = deleteWav.start();
 			deleteIt.waitFor();
 
