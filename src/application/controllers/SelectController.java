@@ -189,7 +189,7 @@ public class SelectController implements Initializable {
 				e.printStackTrace();
 			}
 		} else {
-			title.setText("Titai!");
+			title.setText("Tatai!");
 			gameType.setVisible(true);
 			difficulty.setVisible(false);
 		}
@@ -197,7 +197,7 @@ public class SelectController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		title.setText("Titai!");
+		title.setText("Tatai!");
 		gameType.setVisible(true);
 		difficulty.setVisible(false);
 		

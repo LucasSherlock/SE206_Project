@@ -80,7 +80,7 @@ public class PopUpController implements Initializable {
 				DontRetry.setText("Next");
 				DataFile.Level++;
 
-			}else {
+			} else {
 
 				Status.setText("INCORRECT");
 				Status.setTextFill(Color.RED);
@@ -89,7 +89,7 @@ public class PopUpController implements Initializable {
 				DontRetry.setText("Skip");
 				DataFile.trial = 2;
 			}
-		}else if(DataFile.trial == 2) {
+		} else if(DataFile.trial == 2) {
 			if(DataFile.CorrectAnswer == true) {
 
 				Status.setText("CORRECT");
@@ -101,7 +101,7 @@ public class PopUpController implements Initializable {
 				DataFile.Level++;
 				DataFile.trial = 1;
 			
-			}else {
+			} else {
 
 				Status.setText("INCORRECT");
 				Status.setTextFill(Color.RED);
