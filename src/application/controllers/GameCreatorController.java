@@ -120,8 +120,11 @@ public class GameCreatorController implements Initializable {
 			// List with the given name already exists
 			warning.setVisible(true);
 			warning.setText("That name is already in use.");
-		}
-		else {
+		} else if(listName.getText().equals("")) {
+			// List with the given name already exists
+			warning.setVisible(true);
+			warning.setText("Enter a name.");
+		} else {
 			// List creation process initiates
 			newGame.setName(listName.getText());
 			
